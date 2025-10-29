@@ -1,0 +1,23 @@
+{
+  "name": "dhung-hyul",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "concurrently \"npm:server\" \"npm:client\"",
+    "server": "nodemon backend/server.js --watch backend --ext js,json",
+    "client": "npm --prefix frontend run dev",
+    "start": "node backend/server.js",
+    "build": "npm --prefix frontend run build"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "mongoose": "^8.19.2"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1",
+    "nodemon": "^3.1.10"
+  }
+}
