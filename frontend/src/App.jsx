@@ -11,8 +11,8 @@ export default function App() {
   }, []);
 
   return (
-    <div style={{ padding: 20 }}>
-      <h1>dhung-hyul (frontend)</h1>
+    <div className="p-20">
+      <h1 className="text-red-600">dhung-hyul (frontend)</h1>
       <p>{msg || "Loading..."}</p>
     </div>
   );
