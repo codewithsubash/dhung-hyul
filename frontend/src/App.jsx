@@ -1,19 +1,20 @@
-import { useEffect, useState } from "react";
+import { Route, Routes } from "react-router-dom";
+import CRMRouter from "../routers/CRMRouter";
+import GuestRouter from "../routers/GuestRouter";
+import ProtectedRoutes from "../routers/middlewares/ProtectedRoutes";
+import NotFoundScreen from "../screens/NotFoundScreen";
 
 export default function App() {
-  const [msg, setMsg] = useState("");
-
-  useEffect(() => {
-    fetch("/api/example")
-      .then((res) => res.json())
-      .then((data) => setMsg(data.message))
-      .catch((e) => setMsg("Error: " + e.message));
-  }, []);
-
   return (
-    <div className="p-20">
-      <h1 className="text-red-600">dhung-hyul (frontend)</h1>
-      <p>{msg || "Loading..."}</p>
-    </div>
+    <Routes>
+      {/* Public */}
+      <Route path="/*" element={<GuestRouter />} />
+
+      {/* Protected */}
+      <Route element={<ProtectedRoutes />}>
+        <Route path="/app/*" element={<CRMRouter />} />
+      </Route>
+      <Route path="*" element={<NotFoundScreen />} />
+    </Routes>
   );
 }
