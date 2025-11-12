@@ -3,7 +3,7 @@ import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
 import dotenv from "dotenv";
-import apiRoutes from "./routes/api.js";
+import userRoutes from "./routes/userRoutes.js";
 
 const __dirname = path.resolve();
 dotenv.config({ path: path.join(__dirname, ".env") });
@@ -14,10 +14,8 @@ app.use(cors());
 app.use(express.json());
 
 // Routes
-app.use("/api", apiRoutes);
 
-// Health route
-app.get("/health", (req, res) => res.json({ status: "ok" }));
+app.use("/api/users", userRoutes);
 
 const PORT = process.env.PORT || 5000;
 
