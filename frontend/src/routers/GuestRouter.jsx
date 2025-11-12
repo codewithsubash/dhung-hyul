@@ -1,10 +1,10 @@
 import { Routes, Route } from "react-router-dom";
-import GuestLayout from "../layouts/GuestLayout";
-import NotFoundScreen from "../screens/NotFoundScreen";
+import RegisterScreen from "../components/RegisterScreen";
+import SignInScreen from "../components/SignInScreen";
 import HomeScreen from "../screens/Guest/Home/HomeScreen";
 import AboutScreen from "../screens/Guest/About/AboutScreen";
-import RegisterScreen from "../src/components/RegisterScreen";
-import SignInScreen from "../src/components/SignInScreen";
+import NotFoundScreen from "../screens/NotFoundScreen";
+import GuestLayout from "../layouts/GuestLayout";
 
 const GuestRouter = () => {
   return (

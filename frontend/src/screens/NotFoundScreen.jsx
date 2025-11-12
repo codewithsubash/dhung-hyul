@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 
-import NotFound from "../src/assets/lottie/NotFound.json";
+import NotFound from "../../src/assets/lottie/NotFound.json";
 import LottieAnimationWrapper from "../Lottie/LottieAnimationWrapper";
 
 export const NotFoundScreen = () => {
