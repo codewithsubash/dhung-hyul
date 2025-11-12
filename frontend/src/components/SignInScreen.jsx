@@ -4,9 +4,12 @@ import { toast } from "react-toastify";
 import SignInForm from "./SignInForm";
 import { useDispatch } from "react-redux";
 import { useLoginMutation } from "../store/services/baseApi";
+import { setUser } from "../store/authSlice";
+import { useNavigate } from "react-router-dom";
 
 const SignInScreen = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   // RTK Query
   const [loginUser, { isLoading: loggingIn }] = useLoginMutation();
 
@@ -15,7 +18,7 @@ const SignInScreen = () => {
     try {
       const userData = await loginUser(data).unwrap();
       dispatch(setUser(userData));
-      reset(INITIAL_STATE);
+      navigate("/app");
       toast.success("Login successful!");
     } catch (err) {
       toast.error(err?.data?.message ?? "Something went wrong!");

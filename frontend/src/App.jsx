@@ -1,8 +1,8 @@
 import { Route, Routes } from "react-router-dom";
-import CRMRouter from "../routers/CRMRouter";
-import GuestRouter from "../routers/GuestRouter";
-import ProtectedRoutes from "../routers/middlewares/ProtectedRoutes";
-import NotFoundScreen from "../screens/NotFoundScreen";
+import GuestRouter from "./routers/GuestRouter";
+import NotFoundScreen from "./screens/NotFoundScreen";
+import ProtectedRoutes from "./routers/middlewares/ProtectedRoutes";
+import AppRouter from "./routers/AppRouter";
 
 export default function App() {
   return (
@@ -12,7 +12,7 @@ export default function App() {
 
       {/* Protected */}
       <Route element={<ProtectedRoutes />}>
-        <Route path="/app/*" element={<CRMRouter />} />
+        <Route path="/app/*" element={<AppRouter />} />
       </Route>
       <Route path="*" element={<NotFoundScreen />} />
     </Routes>
