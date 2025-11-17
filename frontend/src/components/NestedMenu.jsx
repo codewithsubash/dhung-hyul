@@ -13,6 +13,7 @@ import { CodeOffOutlined } from "@mui/icons-material";
 
 import { getMuiIcon } from "../utils/getMuiIcon";
 import { useEnvConfig } from "../hooks/useEnvConfig";
+import { useSidebarLayoutContext } from "./SidebarLayout/context/SidebarLayoutContext";
 
 const NestedMenuContext = React.createContext(null);
 
@@ -146,6 +147,8 @@ const MenuItem = ({
 }) => {
   const { openMenu, setOpenMenu } = useNestedMenuContext();
 
+  const { showSidebar } = useSidebarLayoutContext();
+
   const textStyles = {
     color: isActive && `var(--primary)`,
   };
@@ -169,21 +172,33 @@ const MenuItem = ({
             color: isActive ? "primary" : "",
             fontSize: "small",
           })}
+
+          {!showSidebar && !!subMenus?.length && (
+            <>
+              <div className="ml-2">
+                {openMenu[title]
+                  ? getMuiIcon("KeyboardArrowUp")
+                  : getMuiIcon("KeyboardArrowDown")}
+              </div>
+            </>
+          )}
         </ListItemIcon>
 
-        <ListItemText sx={textStyles} color="success">
-          <Box display="flex" alignItems="center" gap={1.5 / 2}>
-            {title}
+        {showSidebar && (
+          <ListItemText sx={textStyles} color="success">
+            <Box display="flex" alignItems="center" gap={1.5 / 2}>
+              {title}
 
-            {inDevelopment && (
-              <Tooltip title="In Development">
-                <CodeOffOutlined color="warning" fontSize="small" />
-              </Tooltip>
-            )}
-          </Box>
-        </ListItemText>
+              {inDevelopment && (
+                <Tooltip title="In Development">
+                  <CodeOffOutlined color="warning" fontSize="small" />
+                </Tooltip>
+              )}
+            </Box>
+          </ListItemText>
+        )}
 
-        {!!subMenus?.length && (
+        {showSidebar && !!subMenus?.length && (
           <>
             {openMenu[title]
               ? getMuiIcon("KeyboardArrowUp")

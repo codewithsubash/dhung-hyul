@@ -6,51 +6,63 @@ import {
   IconButton,
   AppBar as MuiAppBar,
   Paper,
+  Switch,
   Toolbar,
   Tooltip,
 } from "@mui/material";
 
-import { Menu } from "@mui/icons-material";
+import {
+  LightModeOutlined,
+  Menu,
+  NightsStayOutlined,
+} from "@mui/icons-material";
 import { useSidebarLayoutContext } from "../context/SidebarLayoutContext";
 
 const NavBar = styled(MuiAppBar, {
-  shouldForwardProp: (prop) => prop !== "open",
-})(({ theme, open, drawerwidth }) => ({
-  ...theme.mixins.toolbar,
-  backgroundColor: theme.palette.background.default,
-  color: theme.palette.text.primary,
-  transition: theme.transitions.create(["margin", "width"], {
-    easing: theme.transitions.easing.sharp,
-    duration: theme.transitions.duration.leavingScreen,
-  }),
-  boxShadow: "none !important",
-  borderBottom: theme.palette.divider,
-  ...(open && {
+  shouldForwardProp: (prop) => prop !== "drawerwidth",
+})(({ theme, drawerwidth }) => {
+  const transitionConfig = theme.transitions.create(["margin", "width"], {
+    easing: theme.transitions.easing.easeOut,
+    duration: theme.transitions.duration.enteringScreen,
+  });
+
+  return {
+    ...theme.mixins.toolbar,
+    backgroundColor: theme.palette.background.default,
+    color: theme.palette.text.primary,
+    boxShadow: "none !important",
+    borderBottom: theme.palette.divider,
+
     width: `calc(100% - ${drawerwidth}px)`,
     marginLeft: `${drawerwidth}px`,
-    transition: theme.transitions.create(["margin", "width"], {
-      easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-  }),
-}));
+    transition: transitionConfig,
+  };
+});
 
 const AppBar = ({ appBarContent: AppBarContent }) => {
-  const { showSidebar, setShowSidebar, drawerWidth } =
-    useSidebarLayoutContext();
+  const {
+    darkMode,
+    toggleDarkMode,
+    showSidebar,
+    setShowSidebar,
+    drawerWidth,
+    drawerWidthCollapsed,
+  } = useSidebarLayoutContext();
+
+  const currentWidth = showSidebar ? drawerWidth : drawerWidthCollapsed;
 
   return (
     <Paper elevation={0}>
-      <NavBar position="fixed" open={showSidebar} drawerwidth={drawerWidth}>
+      <NavBar position="fixed" drawerwidth={currentWidth}>
         <Toolbar>
-          <IconButton
+          {/* <IconButton
             aria-label="open drawer"
             onClick={() => setShowSidebar(true)}
             edge="start"
             sx={{ mr: 2, ...(showSidebar && { display: "none" }) }}
           >
             <Menu />
-          </IconButton>
+          </IconButton> */}
 
           {/* <div>{!showSidebar && <AppLogo />}</div> */}
           <div>{!showSidebar && "Subash"}</div>
@@ -59,7 +71,7 @@ const AppBar = ({ appBarContent: AppBarContent }) => {
             display="flex"
             flexGrow={1}
             alignItems="center"
-            justifyContent="space-between"
+            justifyContent="end"
           >
             {/* <div className="flex-grow">
               {validEntity && AppBarContent && <AppBarContent />}
@@ -68,8 +80,14 @@ const AppBar = ({ appBarContent: AppBarContent }) => {
             {/* <Notifications /> */}
 
             <div className="flex shrink-0 items-center gap-4">
-              {/* {isAdmin && !isSuperAdmin && <EntitySwitch />} */}
-              {/* <UserMenu /> */}
+              <LightModeOutlined />
+
+              <Switch
+                checked={darkMode}
+                onChange={toggleDarkMode}
+                size="small"
+              />
+              <NightsStayOutlined />
             </div>
           </Box>
         </Toolbar>

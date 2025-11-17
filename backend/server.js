@@ -1,12 +1,13 @@
+import dotenv from "dotenv";
+dotenv.config(); // Load immediately, before any other imports!
+
 import path from "path";
 import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
-import dotenv from "dotenv";
 import userRoutes from "./routes/userRoutes.js";
-
-const __dirname = path.resolve();
-dotenv.config({ path: path.join(__dirname, ".env") });
+import cloudinaryRoutes from "./routes/cloudinaryRoutes.js";
+import blogRoutes from "./routes/blogRoutes.js";
 
 const app = express();
 
@@ -14,8 +15,9 @@ app.use(cors());
 app.use(express.json());
 
 // Routes
-
 app.use("/api/users", userRoutes);
+app.use("/api/cloudinary", cloudinaryRoutes);
+app.use("/api/blogs", blogRoutes);
 
 const PORT = process.env.PORT || 5000;
 
