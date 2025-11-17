@@ -32,7 +32,14 @@ const AppRouter = () => {
       <Route element={<SidebarLayout {...sidebarProps} />}>
         <Route index element={<Navigate to="crm" replace />} />
 
-        <Route path="crm/*" element={<CRMOnly component={CRMRouter} />} />
+        <Route
+          path="crm/*"
+          element={
+            <CRMOnly>
+              <CRMRouter />
+            </CRMOnly>
+          }
+        />
 
         <Route path="*" element={<NotFoundScreen />} />
       </Route>
