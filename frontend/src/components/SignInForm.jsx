@@ -137,7 +137,7 @@ const SignInForm = ({ loggingIn, onSubmit = () => {} }) => {
             Sign In
           </LoadingButton>
 
-          <p className="text-center text-sm text-gray-600">
+          <p className="text-center text-sm mt-5 text-gray-600">
             Don't have an account?{" "}
             <Link
               to="/sign-up"
