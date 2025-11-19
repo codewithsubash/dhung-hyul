@@ -45,10 +45,13 @@ export default function Header() {
         <a href="/about" className="hover:text-green-700 transition-colors">
           About
         </a>
+        <a href="/blog" className="hover:text-green-700 transition-colors">
+          Blog
+        </a>
         <a href="/gallery" className="hover:text-green-700 transition-colors">
           Gallery
         </a>
-        <a href="/event" className="hover:text-green-700 transition-colors">
+        <a href="/events" className="hover:text-green-700 transition-colors">
           Event
         </a>
         <a href="/contact" className="hover:text-green-700 transition-colors">
@@ -104,6 +107,9 @@ export default function Header() {
           </a>
           <a href="/about" className="hover:text-green-700">
             About
+          </a>
+          <a href="/blog" className="hover:text-green-700">
+            Blog
           </a>
           <a href="/gallery" className="hover:text-green-700">
             Gallery
