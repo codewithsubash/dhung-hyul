@@ -17,6 +17,9 @@ import { toast } from "react-toastify";
 import RichTextEditor from "../../../../components/Shared/RichTextEditor";
 import FileDropzone from "../../../../components/Shared/FileDropZone";
 import { useCloudinaryUploadFile } from "../../../../hooks/useCloudinaryUploadFile";
+import BaseAutocomplete from "../../../../components/Shared/Base/BaseAutocomplete";
+import { formHookInputHelper } from "../../../../utils/formHookInputHelper";
+import { useGetListDDLQuery } from "../../../../store/services/listApi";
 
 const BlogForm = ({
   blogDetail = null,
@@ -47,6 +50,13 @@ const BlogForm = ({
       isActive: true,
     },
   });
+
+  const { data: blogCategories = [], isLoading: isLoadingCategories } =
+    useGetListDDLQuery({
+      type: "Blog Categories",
+    });
+
+  console.log(blogCategories);
 
   const handleOnBlogSubmit = async (data) => {
     let payload = { ...data, category: data?.category?._id };
@@ -151,6 +161,31 @@ const BlogForm = ({
                   )}
                 />
                 {errors.tags && <p className="error">{errors.tags.message}</p>}
+              </Grid>
+
+              <Grid size={{ xs: 12, sm: 6 }}>
+                <Controller
+                  name="category"
+                  control={control}
+                  rules={{ required: "Please select an Category." }}
+                  render={(props) => (
+                    <BaseAutocomplete
+                      {...formHookInputHelper(props)}
+                      fullWidth
+                      label="Category"
+                      onChange={(_, data) => {
+                        props?.field?.onChange(data);
+                      }}
+                      getOptionLabel={(opt) => opt && opt.name}
+                      isOptionEqualToValue={(opt, value) =>
+                        opt._id === value._id
+                      }
+                      options={blogCategories || []}
+                      loading={isLoadingCategories}
+                      loadingText="Loading Category..."
+                    />
+                  )}
+                />
               </Grid>
 
               <Grid size={{ xs: 12, sm: 6 }}>

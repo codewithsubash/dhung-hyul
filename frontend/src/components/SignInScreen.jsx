@@ -6,6 +6,8 @@ import { useDispatch } from "react-redux";
 import { useLoginMutation } from "../store/services/baseApi";
 import { setUser } from "../store/authSlice";
 import { useNavigate } from "react-router-dom";
+import Header from "../screens/Header";
+import Footer from "../screens/Footer";
 
 const SignInScreen = () => {
   const dispatch = useDispatch();
@@ -25,7 +27,13 @@ const SignInScreen = () => {
     }
   };
 
-  return <SignInForm isBusy={loggingIn} onSubmit={handleSignIn} />;
+  return (
+    <>
+      <Header />
+      <SignInForm isBusy={loggingIn} onSubmit={handleSignIn} />
+      <Footer />
+    </>
+  );
 };
 
 export default SignInScreen;

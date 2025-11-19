@@ -17,10 +17,10 @@ const blogSchema = mongoose.Schema(
       type: String,
       required: true,
     },
-    // category: {
-    //   type: mongoose.Schema.Types.ObjectId,
-    //   ref: "List",
-    // },
+    category: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "List",
+    },
     tags: {
       type: String,
     },
