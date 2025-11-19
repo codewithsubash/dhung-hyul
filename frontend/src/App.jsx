@@ -9,6 +9,8 @@ export default function App() {
     <Routes>
       {/* Public */}
       <Route path="/*" element={<GuestRouter />} />
+     
+
 
       {/* Protected */}
       <Route element={<ProtectedRoutes />}>

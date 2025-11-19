@@ -44,6 +44,22 @@ export default function Header() {
           Programmes
         </a>
 
+        <a href="/gallery" className="hover:text-green-700 transition-colors">
+          Gallery
+        </a>
+        <a href="/events" className="hover:text-green-700 transition-colors">
+          Event
+        </a>
+        <a href="/contact" className="hover:text-green-700 transition-colors">
+          Contact
+        </a>
+        <a
+          href="/get-involved"
+          className="hover:text-green-700 transition-colors"
+        >
+          Get Involved
+        </a>
+
         <a href="/events" className="hover:text-green-700 transition">
           Events
         </a>
@@ -65,7 +81,7 @@ export default function Header() {
             >
               <a
                 className="block px-2 py-2 rounded hover:bg-gray-100"
-                href="/who-we-are"
+                href="/about"
               >
                 Who we are
               </a>
@@ -126,6 +142,10 @@ export default function Header() {
           </a>
           <a href="/events" className="hover:text-green-700">
             Events
+          </a>
+
+          <a href="/gallery" className="hover:text-green-700">
+            Gallery
           </a>
 
           {/* ABOUT US MOBILE DROPDOWN */}

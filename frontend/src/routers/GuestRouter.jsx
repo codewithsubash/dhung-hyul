@@ -6,6 +6,9 @@ import AboutScreen from "../screens/Guest/About/AboutScreen";
 import NotFoundScreen from "../screens/NotFoundScreen";
 import GuestLayout from "../layouts/GuestLayout";
 import GuestOnly from "./middlewares/GuestOnly";
+import GalleryScreen from "../screens/Guest/Gallery/GalleryScreen";
+import BlogScreen from "../screens/Guest/Blog/BlogScreen";
+import EventScreen from "../screens/Guest/Events/EventScreen";
 
 const GuestRouter = () => {
   return (
@@ -31,6 +34,31 @@ const GuestRouter = () => {
           element={
             <GuestOnly>
               <AboutScreen />
+            </GuestOnly>
+          }
+        />
+
+        <Route
+          path="/gallery"
+          element={
+            <GuestOnly>
+              <GalleryScreen />
+            </GuestOnly>
+          }
+        />
+        <Route
+          path="/blog"
+          element={
+            <GuestOnly>
+              <BlogScreen />
+            </GuestOnly>
+          }
+        />
+        <Route
+          path="/events"
+          element={
+            <GuestOnly>
+              <EventScreen />
             </GuestOnly>
           }
         />
