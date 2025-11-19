@@ -10,11 +10,9 @@ export const createBlog = asyncHandler(async (req, res) => {
     author,
     isActive,
     isFeatured,
-    // category,
+    category,
     tags,
   } = req.body;
-
-  console.log(req.body, "dd");
 
   const blog = new Blog({
     image,
@@ -23,7 +21,7 @@ export const createBlog = asyncHandler(async (req, res) => {
     author,
     isActive,
     isFeatured,
-    // category,
+    category,
     createdBy: req.user._id,
     tags,
   });
@@ -66,7 +64,7 @@ export const listBlog = asyncHandler(async (req, res) => {
   ]);
 
   const populateBlogs = await Blog.populate(blogs[0].data, [
-    // { path: "category", select: "name" },
+    { path: "category", select: "name" },
     { path: "createdBy", select: "name" },
   ]);
 
@@ -92,7 +90,7 @@ export const updateBlog = asyncHandler(async (req, res) => {
     author,
     isActive,
     isFeatured,
-    // category,
+    category,
     tags,
   } = req.body;
 
@@ -109,7 +107,7 @@ export const updateBlog = asyncHandler(async (req, res) => {
     author,
     isActive,
     isFeatured,
-    // category,
+    category,
     tags,
   };
 
