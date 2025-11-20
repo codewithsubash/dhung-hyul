@@ -9,6 +9,7 @@ import GuestOnly from "./middlewares/GuestOnly";
 import GalleryScreen from "../screens/Guest/Gallery/GalleryScreen";
 import BlogScreen from "../screens/Guest/Blog/BlogScreen";
 import EventScreen from "../screens/Guest/Events/EventScreen";
+import GetInvolved from "../screens/Guest/GetInvolved/GetInvolved";
 
 const GuestRouter = () => {
   return (
@@ -46,6 +47,12 @@ const GuestRouter = () => {
             </GuestOnly>
           }
         />
+        <Route path="/getinvolved" element={
+          <GuestOnly>
+            <GetInvolved />
+          </GuestOnly>
+        } />
+
         <Route
           path="/blog"
           element={
