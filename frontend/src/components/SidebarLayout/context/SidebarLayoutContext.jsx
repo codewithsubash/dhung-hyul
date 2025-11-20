@@ -8,6 +8,7 @@ export const useSidebarLayoutContext = () =>
   React.useContext(SidebarLayoutContext);
 
 const drawerWidth = 250;
+const drawerWidthCollapsed = 75;
 
 const SidebarLayoutContextProvider = ({ children }) => {
   const [showSidebar, setShowSidebar] = React.useState(true);
@@ -60,6 +61,7 @@ const SidebarLayoutContextProvider = ({ children }) => {
         showSidebar,
         setShowSidebar,
         drawerWidth,
+        drawerWidthCollapsed,
         theme,
         darkMode,
         toggleDarkMode,

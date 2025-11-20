@@ -1,0 +1,9 @@
+export const BASE_CONSTANTS = {
+  SPACING_SM: 1.5,
+  SPACING_MD: 3,
+  SPACING_LG: 5,
+
+  PADDING_SM: 1.5,
+  PADDING_MD: 3,
+  PADDING_LG: 5,
+};
