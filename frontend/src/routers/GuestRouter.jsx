@@ -8,6 +8,7 @@ import GuestLayout from "../layouts/GuestLayout";
 import GalleryScreen from "../screens/Guest/Gallery/GalleryScreen";
 import BlogScreen from "../screens/Guest/Blog/BlogScreen";
 import EventScreen from "../screens/Guest/Events/EventScreen";
+import GetInvolved from "../screens/Guest/GetInvolved/GetInvolved";
 
 const GuestRouter = () => {
   return (
@@ -18,6 +19,7 @@ const GuestRouter = () => {
       <Route path="/gallery" element={<GalleryScreen />} />
       <Route path="/blog" element={<BlogScreen />} />
       <Route path="/events" element={<EventScreen />} />
+      <Route path="/getinvolved" element={<GetInvolved />} />
       </Route>
       <Route path="/sign-up" element={<RegisterScreen />} />
       <Route path="/sign-in" element={<SignInScreen />} />

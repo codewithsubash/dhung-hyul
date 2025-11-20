@@ -58,7 +58,7 @@ export default function Header() {
           Contact
         </a>
         <a
-          href="/get-involved"
+          href="/getinvolved"
           className="hover:text-green-700 transition-colors"
         >
           Get Involved
