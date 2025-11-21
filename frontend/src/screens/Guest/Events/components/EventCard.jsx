@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const EventCard = ({ 
   image,
@@ -6,16 +7,11 @@ const EventCard = ({
   date,
   title,
   description,
-  link = "#",
+  link = "event-details",
   size = "large"
 }) => {
   const [isHovered, setIsHovered] = useState(false);
 
-  const handleClick = () => {
-    if (link && link !== "#") {
-      window.open(link, '_blank');
-    }
-  };
 const heightClass =
   size === "large"
     ? "h-[600px]"
@@ -36,7 +32,6 @@ const widthClass =
       className={`relative ${heightClass} rounded-3xl overflow-hidden cursor-pointer group shadow-lg`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      onClick={handleClick}
     >
       {/* Background Image */}
       <div 
@@ -75,12 +70,13 @@ const widthClass =
               {description}
             </p>
           )}
-
+          <Link to="event-details">
           <button 
             className="px-6 py-3 bg-white/20 backdrop-blur-md text-white rounded-full font-medium border border-white/40 hover:bg-white/30 transition-all duration-300"
           >
             Event Details
           </button>
+          </Link>
         </div>
       </div>
     </div>
