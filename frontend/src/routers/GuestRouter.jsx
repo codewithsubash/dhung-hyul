@@ -10,6 +10,8 @@ import GalleryScreen from "../screens/Guest/Gallery/GalleryScreen";
 import BlogScreen from "../screens/Guest/Blog/BlogScreen";
 import EventScreen from "../screens/Guest/Events/EventScreen";
 import GetInvolved from "../screens/Guest/GetInvolved/GetInvolved";
+import GetInvolvedScreen from "../screens/Guest/GetInvolved/GetInvolvedScreen";
+import EventDetails from "../screens/Guest/Events/EventDetails";
 
 const GuestRouter = () => {
   return (
@@ -49,7 +51,7 @@ const GuestRouter = () => {
         />
         <Route path="/getinvolved" element={
           <GuestOnly>
-            <GetInvolved />
+            <GetInvolvedScreen />
           </GuestOnly>
         } />
 
@@ -61,6 +63,14 @@ const GuestRouter = () => {
             </GuestOnly>
           }
         />
+        <Route
+        path="/events/event-details"
+        element={
+          <GuestOnly>
+            <EventDetails />
+          </GuestOnly>
+        }
+      />
         <Route
           path="/events"
           element={
@@ -78,6 +88,7 @@ const GuestRouter = () => {
           </GuestOnly>
         }
       />
+      
       <Route
         path="/sign-in"
         element={
