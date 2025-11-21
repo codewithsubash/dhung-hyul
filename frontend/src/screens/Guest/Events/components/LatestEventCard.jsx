@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import { ArrowUpRight } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
-
-
-const BlogCard = ({ 
+const LatestEventCard = ({ 
   image,
   category,
   date,
@@ -12,6 +11,7 @@ const BlogCard = ({
   link = "#"
 }) => {
   const [isHovered, setIsHovered] = useState(false);
+  const navigate = useNavigate();
 
   const handleClick = () => {
     if (link && link !== "#") {
@@ -24,7 +24,7 @@ const BlogCard = ({
       className="w-full max-w-lg cursor-pointer"
       onClick={handleClick}
     >
-      {/* Image Container - Separate at top */}
+      {/* Image Container */}
       <div 
         className="relative overflow-hidden rounded-3xl mb-6"
         onMouseEnter={() => setIsHovered(true)}
@@ -39,19 +39,27 @@ const BlogCard = ({
           />
         </div>
         
-        {/* Arrow Icon - Appears from bottom left on hover */}
+        {/* Arrow — Navigate to Event Detail */}
         <div 
-          className="absolute bottom-4 left-4 bg-white rounded-full p-3 shadow-lg transition-all duration-300 ease-out"
-          style={{
-            opacity: isHovered ? 1 : 0,
-            transform: isHovered ? 'translate(0, 0) scale(1)' : 'translate(-20px, 20px) scale(0.5)'
+          className="absolute bottom-4 left-4"
+          onClick={(e) => {
+            e.stopPropagation(); // Prevent card click
+            navigate("event-details"); // Go to event detail page
           }}
         >
-          <ArrowUpRight className="w-6 h-6 text-gray-800" />
+          <div
+            className="bg-green-500 rounded-full p-3 shadow-lg transition-all duration-300 ease-out cursor-pointer"
+            style={{
+              opacity: isHovered ? 1 : 0,
+              transform: isHovered ? 'translate(0, 0) scale(1)' : 'translate(-20px, 20px) scale(0.5)'
+            }}
+          >
+            <ArrowUpRight className="w-6 h-6 text-gray-800" />
+          </div>
         </div>
       </div>
 
-      {/* Content - Separate below image */}
+      {/* Content */}
       <div>
         {/* Category and Date */}
         <div className="flex items-center gap-3 mb-3">
@@ -79,4 +87,4 @@ const BlogCard = ({
   );
 };
 
-export default BlogCard;
+export default LatestEventCard;

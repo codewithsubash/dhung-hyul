@@ -1,88 +1,96 @@
-export default function Footer() {
+import React from "react";
+import { Facebook, Instagram, Twitter } from "lucide-react";
+
+const Footer = () => {
   return (
-    <footer className="bg-white border-t mt-10">
-      {/* Top Section */}
-      <div className="max-w-7xl mx-auto px-6 py-10 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-10">
-        {/* Brand + Newsletter */}
-        <div>
-          <div className="flex items-center gap-2 mb-4">
-            <div className="w-6 h-6 rounded-full bg-green-700"></div>
-            <span className="text-xl font-semibold text-gray-800">
-              Shung Hyul
-            </span>
+    <footer className="bg-gray-50 border-t border-gray-200">
+      <div className="max-w-7xl mx-auto px-6 py-12">
+        
+        {/* Main Footer */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+          
+          {/* Newsletter */}
+          <div>
+            <div className="flex items-center gap-2 mb-4">
+              <div className="w-10 h-10 bg-teal-700 rounded-full flex items-center justify-center">
+                <div className="w-6 h-6 border-4 border-white rounded-full"></div>
+              </div>
+              <h2 className="text-2xl font-bold text-gray-900">Dhung Hyul</h2>
+            </div>
+
+            <p className="text-gray-600 mb-6">
+              Lorem ipsum dolor sit amet consectetur adipm aperiam maxime autem. Voluptates inventore suscipit at? to our newsletter to receive the latest updates on features and releases.
+            </p>
+
+           
           </div>
-          <p className="text-gray-600 mb-4">
-            Subscribe to our newsletter to receive the latest updates on features and releases.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-2">
-            <input
-              type="email"
-              placeholder="Email Address"
-              className="flex-1 px-4 py-2 rounded-lg bg-[#EDF5F2] focus:outline-none"
-            />
-            <button className="bg-green-800 text-white px-5 py-2 rounded-lg hover:bg-green-700 transition">
-              Subscribe
-            </button>
+
+          {/* Navigation */}
+          <div>
+            <h3 className="text-lg font-semibold text-gray-900 mb-4">Navigation</h3>
+            <ul className="space-y-3">
+              <li><a href="#" className="text-gray-600 hover:text-teal-700">Home</a></li>
+              <li><a href="#" className="text-gray-600 hover:text-teal-700">Events</a></li>
+              <li><a href="#" className="text-gray-600 hover:text-teal-700">Our Supporters</a></li>
+              <li><a href="#" className="text-gray-600 hover:text-teal-700">Get Involved</a></li>
+            </ul>
+          </div>
+
+          {/* Additional Links */}
+          <div>
+            <h3 className="text-lg font-semibold text-gray-900 mb-4 opacity-0 lg:opacity-100">
+              Links
+            </h3>
+            <ul className="space-y-3">
+              <li><a href="#" className="text-gray-600 hover:text-teal-700">Programmes</a></li>
+              <li><a href="#" className="text-gray-600 hover:text-teal-700">About Us</a></li>
+              <li><a href="#" className="text-gray-600 hover:text-teal-700">Our Blog</a></li>
+              <li><a href="#" className="text-gray-600 hover:text-teal-700">Contact Us</a></li>
+            </ul>
+          </div>
+
+          {/* Contact */}
+          <div>
+            <h3 className="text-lg font-semibold text-gray-900 mb-4">Connect With Us</h3>
+
+            <div className="space-y-3 text-gray-600">
+              <p>123 Placeholder Street, Auckland, New Zealand</p>
+              <p><a href="mailto:contact@harbour.co.nz" className="hover:text-teal-700">contact@harbour.co.nz</a></p>
+              <p><a href="tel:+6412345678" className="hover:text-teal-700">+64 123 456 78</a></p>
+
+              <div className="flex gap-3 pt-2">
+                <a className="w-10 h-10 bg-teal-100 rounded-full flex items-center justify-center hover:bg-teal-200">
+                  <Facebook className="w-5 h-5 text-teal-700" />
+                </a>
+                <a className="w-10 h-10 bg-teal-100 rounded-full flex items-center justify-center hover:bg-teal-200">
+                  <Instagram className="w-5 h-5 text-teal-700" />
+                </a>
+                <a className="w-10 h-10 bg-teal-100 rounded-full flex items-center justify-center hover:bg-teal-200">
+                  <Twitter className="w-5 h-5 text-teal-700" />
+                </a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        {/* Bottom Section */}
+        <div className="pt-8 border-t border-gray-200 flex flex-col md:flex-row justify-between items-center text-sm text-gray-600 gap-4">
+          <div className="flex flex-wrap gap-2">
+            <span>© 2025 Dhung Hyul.</span>
+            <span>Powered by Webflow</span>
+            <span>Created by Trigger Digital</span>
+          </div>
+
+          <div className="flex gap-6">
+            <a href="#" className="hover:text-teal-700">Privacy Policy</a>
+            <a href="#" className="hover:text-teal-700">Terms & Conditions</a>
           </div>
         </div>
 
-        {/* Navigation */}
-        <div className="md:col-span-1">
-          <h3 className="font-semibold text-gray-800 mb-3">Navigation</h3>
-          <ul className="space-y-2 text-gray-600">
-            <li><a href="/" className="hover:text-green-700">Home</a></li>
-            <li><a href="/about" className="hover:text-green-700">About</a></li>
-            <li><a href="/gallery" className="hover:text-green-700">Gallery</a></li>
-            <li><a href="/event" className="hover:text-green-700">Event</a></li>
-            <li><a href="/get-involved" className="hover:text-green-700">Get Involved</a></li>
-          </ul>
-        </div>
-
-        {/* Programs / Info */}
-        <div className="md:col-span-1">
-          <h3 className="font-semibold text-gray-800 mb-3">Programs</h3>
-          <ul className="space-y-2 text-gray-600">
-            <li><a href="/our-supporters" className="hover:text-green-700">Our Supporters</a></li>
-            <li><a href="/our-blog" className="hover:text-green-700">Our Blog</a></li>
-            <li><a href="/contact" className="hover:text-green-700">Contact Us</a></li>
-          </ul>
-        </div>
-
-        {/* Connect With Us */}
-        <div>
-          <h3 className="font-semibold text-gray-800 mb-3">Connect With Us</h3>
-          <p className="text-gray-600 mb-2">
-            123 Placeholder Street, Kathmandu, Nepal
-          </p>
-          <p className="text-gray-600 mb-1">contact@shunghyul.org</p>
-          <p className="text-gray-600 mb-4">+977 9801234567</p>
-
-          <div className="flex gap-3">
-            <a href="#" className="bg-[#EDF5F2] p-2 rounded-lg hover:bg-green-100 transition">
-              <i className="fab fa-facebook-f text-green-800"></i>
-            </a>
-            <a href="#" className="bg-[#EDF5F2] p-2 rounded-lg hover:bg-green-100 transition">
-              <i className="fab fa-instagram text-green-800"></i>
-            </a>
-            <a href="#" className="bg-[#EDF5F2] p-2 rounded-lg hover:bg-green-100 transition">
-              <i className="fab fa-x-twitter text-green-800"></i>
-            </a>
-          </div>
-        </div>
-      </div>
-
-      {/* Bottom Section */}
-      <div className="border-t text-gray-600 text-sm py-4 px-6 flex flex-col sm:flex-row justify-between items-center max-w-7xl mx-auto">
-        <p>© {new Date().getFullYear()} Shung Hyul.</p>
-        <div className="flex gap-4 mt-2 sm:mt-0">
-          <a href="/privacy" className="hover:text-green-700">
-            Privacy Policy
-          </a>
-          <a href="/terms" className="hover:text-green-700">
-            Terms & Conditions
-          </a>
-        </div>
       </div>
     </footer>
   );
-}
+};
+
+export default Footer;
