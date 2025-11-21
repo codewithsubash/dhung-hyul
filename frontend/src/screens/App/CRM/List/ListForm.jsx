@@ -37,49 +37,47 @@ const ListForm = ({
   }, [initialData, reset]);
 
   return (
-    <>
+    <form onSubmit={handleSubmit(onSubmit)}>
       <BaseDrawer.Header>
         <Typography variant="h6" mb={2}>
           {initialData ? "Edit Option" : "New Option"}
         </Typography>
       </BaseDrawer.Header>
+
       <BaseDrawer.Content>
-        <form onSubmit={handleSubmit(onSubmit)}>
-          {/* NAME */}
-          <Controller
-            name="name"
-            control={control}
-            rules={{ required: "Name is required" }}
-            render={({ field, fieldState: { error } }) => (
-              <TextField
-                {...field}
-                label="Name"
-                fullWidth
-                margin="normal"
-                error={!!error}
-                helperText={error?.message}
-              />
-            )}
-          />
+        {/* NAME */}
+        <Controller
+          name="name"
+          control={control}
+          rules={{ required: "Name is required" }}
+          render={({ field, fieldState: { error } }) => (
+            <TextField
+              {...field}
+              label="Name"
+              fullWidth
+              margin="normal"
+              error={!!error}
+              helperText={error?.message}
+            />
+          )}
+        />
 
-          {/* STATUS */}
-          <Controller
-            name="status"
-            control={control}
-            render={({ field }) => (
-              <FormControl fullWidth margin="normal">
-                <InputLabel>Status</InputLabel>
-                <Select {...field} label="Status">
-                  <MenuItem value="Active">Active</MenuItem>
-                  <MenuItem value="InActive">InActive</MenuItem>
-                </Select>
-              </FormControl>
-            )}
-          />
-
-          {/* ACTION BUTTONS */}
-        </form>
+        {/* STATUS */}
+        <Controller
+          name="status"
+          control={control}
+          render={({ field }) => (
+            <FormControl fullWidth margin="normal">
+              <InputLabel>Status</InputLabel>
+              <Select {...field} label="Status">
+                <MenuItem value="Active">Active</MenuItem>
+                <MenuItem value="InActive">InActive</MenuItem>
+              </Select>
+            </FormControl>
+          )}
+        />
       </BaseDrawer.Content>
+
       <BaseDrawer.Actions>
         <Button onClick={onCancel} disabled={isSubmitting}>
           Cancel
@@ -88,7 +86,7 @@ const ListForm = ({
           {isSubmitting ? "Saving..." : initialData ? "Update" : "Create"}
         </Button>
       </BaseDrawer.Actions>
-    </>
+    </form>
   );
 };
 

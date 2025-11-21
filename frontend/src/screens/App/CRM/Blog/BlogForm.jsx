@@ -56,8 +56,6 @@ const BlogForm = ({
       type: "Blog Categories",
     });
 
-  console.log(blogCategories);
-
   const handleOnBlogSubmit = async (data) => {
     let payload = { ...data, category: data?.category?._id };
 
