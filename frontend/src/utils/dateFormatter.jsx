@@ -24,32 +24,16 @@ export const formatEventDate = (date, options = {}) => {
   return `${dateFormatted} at ${timeFormatted}`;
 };
 
-export const formatDateRange = (startDate, endDate, options = {}) => {
+export const formatDateRange = (date, options = {}) => {
   const { showTime = true } = options;
 
-  if (!startDate) return "N/A";
+  if (!date) return "N/A";
 
-  const start = moment(startDate);
-  const end = moment(endDate);
+  const d = moment(date);
 
-  // Same day event
-  if (start.isSame(end, "day")) {
-    if (showTime) {
-      return `${start.format("MMMM D, YYYY")} • ${start.format(
-        "h:mm A"
-      )} - ${end.format("h:mm A")}`;
-    }
-    return start.format("MMMM D, YYYY");
-  }
-
-  // Multi-day event
-  if (showTime) {
-    return `${start.format("MMM D, YYYY h:mm A")} - ${end.format(
-      "MMM D, YYYY h:mm A"
-    )}`;
-  }
-
-  return `${start.format("MMM D, YYYY")} - ${end.format("MMM D, YYYY")}`;
+  return showTime
+    ? d.format("MMMM D, YYYY • h:mm A")
+    : d.format("MMMM D, YYYY");
 };
 
 export const getEventStatus = (startDate, endDate) => {

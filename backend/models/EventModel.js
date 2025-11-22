@@ -44,21 +44,9 @@ const eventSchema = new mongoose.Schema(
       required: true,
     },
 
-    overview: {
+    description: {
       type: String,
       required: true,
-    },
-
-    whyThisMatters: {
-      type: String,
-    },
-
-    whatToExpect: {
-      type: String,
-    },
-
-    accessibilityVenuInfo: {
-      type: String,
     },
 
     status: {

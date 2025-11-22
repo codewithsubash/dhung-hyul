@@ -3,9 +3,6 @@ import { toast } from "react-toastify";
 
 import RegisterForm from "./RegisterForm";
 import { useRegisterUserMutation } from "../store/services/userApi";
-import Header from "../screens/Header";
-import Footer from "../screens/Footer";
-
 const RegisterScreen = () => {
   // RTK Query
   const [registerUser, { isLoading: loadingUser }] = useRegisterUserMutation();
@@ -23,9 +20,7 @@ const RegisterScreen = () => {
 
   return (
     <>
-      <Header />
       <RegisterForm isBusy={loadingUser} onSubmit={handleRegister} />
-      <Footer />
     </>
   );
 };

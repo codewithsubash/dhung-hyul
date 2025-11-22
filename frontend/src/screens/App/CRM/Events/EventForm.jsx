@@ -58,10 +58,8 @@ const EventForm = ({
       registrationEndDate: null,
       startDate: null,
       endDate: null,
-      overview: "",
-      whyThisMatters: "",
-      whatToExpect: "",
-      accessibilityVenuInfo: "",
+      description: "",
+
       status: "Draft",
     },
   });
@@ -131,7 +129,7 @@ const EventForm = ({
   return (
     <>
       <Box padding={3}>
-        <Grid container spacing={2}>
+        <Grid container spacing={4}>
           <Grid size={{ xs: 12, sm: 6 }}>
             <Controller
               name="title"
@@ -177,13 +175,13 @@ const EventForm = ({
           </Grid>
 
           {/* File Upload */}
-          <Grid size={{ xs: 12 }}>
-            <Box mt={2} mb={2}>
-              <h3 style={{ margin: 0, marginBottom: 16 }}>Event Image *</h3>
-            </Box>
-          </Grid>
 
           <Grid size={12}>
+            <div
+              style={{ color: "gray", fontSize: 15, marginBottom: ".75rem" }}
+            >
+              Event Image *
+            </div>
             <Controller
               name="image"
               control={control}
@@ -359,98 +357,31 @@ const EventForm = ({
             />
           </Grid>
 
-          {/* Content Section */}
-          <Grid size={{ xs: 12 }}>
-            <Box mt={2} mb={2}>
-              <h3 style={{ margin: 0, marginBottom: 16 }}>Event Content</h3>
-            </Box>
-          </Grid>
-
           <Grid size={12}>
             <div
               style={{ color: "gray", fontSize: 15, marginBottom: ".75rem" }}
             >
-              Overview *
+              Description *
             </div>
             <Controller
-              name="overview"
+              name="description"
               control={control}
-              rules={{ required: "Overview is required" }}
+              rules={{ required: "Description is required" }}
               render={({ field: { onChange } }) => (
                 <RichTextEditor
                   initialValue={
-                    eventDetail?.overview
-                      ? eventDetail.overview
-                      : "<p>Enter event overview...</p>"
+                    eventDetail?.description
+                      ? eventDetail.description
+                      : "<p>Enter event description...</p>"
                   }
                   onChange={onChange}
-                  error={!!errors?.overview}
-                  helperText={errors?.overview?.message}
+                  error={!!errors?.description}
+                  helperText={errors?.description?.message}
                 />
               )}
             />
           </Grid>
 
-          <Grid size={12} mt={3}>
-            <div
-              style={{ color: "gray", fontSize: 15, marginBottom: ".75rem" }}
-            >
-              Why This Matters
-            </div>
-            <Controller
-              name="whyThisMatters"
-              control={control}
-              render={({ field: { onChange } }) => (
-                <RichTextEditor
-                  initialValue={
-                    eventDetail?.whyThisMatters
-                      ? eventDetail.whyThisMatters
-                      : "<p>Explain why this event matters...</p>"
-                  }
-                  onChange={onChange}
-                />
-              )}
-            />
-          </Grid>
-
-          <Grid size={12} mt={3}>
-            <div
-              style={{ color: "gray", fontSize: 15, marginBottom: ".75rem" }}
-            >
-              What to Expect
-            </div>
-            <Controller
-              name="whatToExpect"
-              control={control}
-              render={({ field: { onChange } }) => (
-                <RichTextEditor
-                  initialValue={
-                    eventDetail?.whatToExpect
-                      ? eventDetail.whatToExpect
-                      : "<p>Describe what attendees can expect...</p>"
-                  }
-                  onChange={onChange}
-                />
-              )}
-            />
-          </Grid>
-
-          <Grid size={12} mt={3}>
-            <Controller
-              name="accessibilityVenuInfo"
-              control={control}
-              render={(props) => (
-                <BaseTextField
-                  {...formHookInputHelper(props)}
-                  fullWidth
-                  label="Accessibility and Venue Information"
-                  multiline
-                  rows={4}
-                  placeholder="Enter accessibility details and venue information..."
-                />
-              )}
-            />
-          </Grid>
           <Grid size={{ xs: 12, sm: 6 }}>
             <Controller
               name="location"

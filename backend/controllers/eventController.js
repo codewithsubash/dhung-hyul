@@ -12,10 +12,8 @@ export const createEvent = asyncHandler(async (req, res) => {
     endDate,
     location,
     image,
-    overview,
-    whyThisMatters,
-    whatToExpect,
-    accessibilityVenuInfo,
+    description,
+
     status,
   } = req.body;
 
@@ -28,10 +26,8 @@ export const createEvent = asyncHandler(async (req, res) => {
     endDate,
     location,
     image,
-    overview,
-    whyThisMatters,
-    whatToExpect,
-    accessibilityVenuInfo,
+    description,
+
     status,
     createdBy: req.user._id,
   });
@@ -126,10 +122,8 @@ export const updateEvent = asyncHandler(async (req, res) => {
     endDate,
     location,
     image,
-    overview,
-    whyThisMatters,
-    whatToExpect,
-    accessibilityVenuInfo,
+    description,
+
     status,
   } = req.body;
 
@@ -148,10 +142,8 @@ export const updateEvent = asyncHandler(async (req, res) => {
     endDate,
     location,
     image,
-    overview,
-    whyThisMatters,
-    whatToExpect,
-    accessibilityVenuInfo,
+    description,
+
     status,
   };
 

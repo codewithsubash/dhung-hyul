@@ -1,13 +1,7 @@
 import React from "react";
 import { Link, useParams } from "react-router-dom";
-import { Box, Button, Chip, Divider, Grid, Typography } from "@mui/material";
-import {
-  EditOutlined,
-  LocationOnOutlined,
-  CalendarTodayOutlined,
-  AccessTimeOutlined,
-  PersonOutlineOutlined,
-} from "@mui/icons-material";
+import { Box, Button, Chip, Grid, Typography } from "@mui/material";
+import { EditOutlined } from "@mui/icons-material";
 import ReactHtmlParser from "html-react-parser";
 
 import BreadcrumbLayout from "../../../../components/Shared/BreadCrumb/BreadcrumbLayout";
@@ -124,18 +118,26 @@ const EventDetailScreen = () => {
             <Grid size={12}>
               <Grid container spacing={3}>
                 <Grid size={{ xs: 12, sm: 6, md: 4 }}>
-                  <InformationTile title="Title" subtitle={eventDetail.title} />
+                  <InformationTile
+                    title="Title"
+                    subtitle={eventDetail.title}
+                    iconName="SubtitlesOutlined"
+                  />
                 </Grid>
 
                 <Grid size={{ xs: 12, sm: 6, md: 4 }}>
                   <InformationTile
                     title="Category"
                     subtitle={eventDetail.category?.name || "N/A"}
+                    iconName="SubjectOutlined"
                   />
                 </Grid>
 
                 <Grid size={{ xs: 12, sm: 6, md: 4 }}>
-                  <InformationTile title="Status">
+                  <InformationTile
+                    title="Status"
+                    iconName="BorderClearOutlined"
+                  >
                     <Chip
                       label={eventDetail.status}
                       size="small"
@@ -152,175 +154,62 @@ const EventDetailScreen = () => {
                   </InformationTile>
                 </Grid>
 
-                {eventStatus && (
-                  <Grid size={{ xs: 12, sm: 6, md: 4 }}>
-                    <InformationTile title="Event Status">
-                      <Chip
-                        label={eventStatus.label}
-                        size="small"
-                        sx={{
-                          bgcolor: eventStatus.bgColor,
-                          color: eventStatus.color,
-                        }}
-                      />
-                    </InformationTile>
-                  </Grid>
-                )}
-
                 <Grid size={{ xs: 12, sm: 6, md: 4 }}>
                   <InformationTile
-                    title={
-                      <Box display="flex" alignItems="center" gap={1}>
-                        <LocationOnOutlined fontSize="small" />
-                        Location
-                      </Box>
-                    }
+                    title="Location"
                     subtitle={eventDetail.location || "Not specified"}
+                    iconName="LocationOnOutlined"
                   />
                 </Grid>
-
                 <Grid size={{ xs: 12, sm: 6, md: 4 }}>
-                  <Box>
-                    <Typography
-                      sx={{
-                        fontSize: "0.875rem",
-                        fontWeight: 600,
-                        color: "text.secondary",
-                        display: "flex",
-                        alignItems: "center",
-                        mb: 1,
-                      }}
-                    >
-                      <CalendarTodayOutlined fontSize="small" sx={{ mr: 1 }} />
-                      Event Date & Time
-                    </Typography>
-                    <Typography fontSize="0.95rem">
-                      {formatDateRange(
-                        eventDetail.startDate,
-                        eventDetail.endDate
-                      )}
-                    </Typography>
-                  </Box>
+                  <InformationTile
+                    title="Start Date"
+                    subtitle={formatDateRange(eventDetail.startDate)}
+                    iconName="CalendarTodayOutlined"
+                  />
                 </Grid>
-
                 <Grid size={{ xs: 12, sm: 6, md: 4 }}>
-                  <Box>
-                    <Typography
-                      sx={{
-                        fontSize: "0.875rem",
-                        fontWeight: 600,
-                        color: "text.secondary",
-                        display: "flex",
-                        alignItems: "center",
-                        mb: 1,
-                      }}
-                    >
-                      <AccessTimeOutlined fontSize="small" sx={{ mr: 1 }} />
-                      Registration Period
-                    </Typography>
-
-                    {registrationStatus && (
-                      <Chip
-                        label={registrationStatus.label}
-                        size="small"
-                        sx={{
-                          bgcolor: registrationStatus.bgColor,
-                          color: registrationStatus.color,
-                          mb: 1,
-                        }}
-                      />
+                  <InformationTile
+                    title="End Date"
+                    subtitle={formatDateRange(eventDetail.endDate)}
+                    iconName="CalendarTodayOutlined"
+                  />
+                </Grid>
+                <Grid size={{ xs: 12, sm: 6, md: 4 }}>
+                  <InformationTile
+                    title="Register Start"
+                    subtitle={formatDateRange(
+                      eventDetail.registrationStartDate
                     )}
-                  </Box>
+                    iconName="CalendarTodayOutlined"
+                  />
                 </Grid>
-
                 <Grid size={{ xs: 12, sm: 6, md: 4 }}>
-                  <Box>
-                    <Typography
-                      sx={{
-                        fontSize: "0.875rem",
-                        fontWeight: 600,
-                        color: "text.secondary",
-                        display: "flex",
-                        alignItems: "center",
-                        mb: 1,
-                      }}
-                    >
-                      <CalendarTodayOutlined fontSize="small" sx={{ mr: 1 }} />
-                      Registration Date and Time
-                    </Typography>
-                    <Typography fontSize="0.95rem">
-                      {formatDateRange(
-                        eventDetail.registrationStartDate,
-                        eventDetail.registrationEndDate
-                      )}
-                    </Typography>
-                  </Box>
+                  <InformationTile
+                    title="Register End"
+                    subtitle={formatDateRange(eventDetail.registrationEndDate)}
+                    iconName="CalendarTodayOutlined"
+                  />
                 </Grid>
-
-                {eventDetail.createdBy?.name && (
-                  <Grid size={{ xs: 12, sm: 6, md: 4 }}>
-                    <InformationTile
-                      title={
-                        <Box display="flex" alignItems="center" gap={1}>
-                          <PersonOutlineOutlined fontSize="small" />
-                          Created By
-                        </Box>
-                      }
-                      subtitle={eventDetail.createdBy.name}
-                    />
-                  </Grid>
-                )}
+                <Grid size={{ xs: 12, sm: 6, md: 4 }}>
+                  <InformationTile
+                    title=" Created By"
+                    subtitle={eventDetail.createdBy.name || "Undefined"}
+                    iconName="PersonOutlineOutlined"
+                  />
+                </Grid>
               </Grid>
             </Grid>
           </Grid>
 
           {/* Content Sections */}
           <Box mt={6}>
-            {eventDetail.overview && (
-              <Box mb={5}>
-                <Typography sx={sectionTitleStyle}>Event Overview</Typography>
-                <Box sx={{ color: "#374151", lineHeight: 1.7 }}>
-                  {ReactHtmlParser(eventDetail.overview)}
-                </Box>
-              </Box>
-            )}
-
-            {eventDetail.whyThisMatters && (
-              <Box mb={5}>
-                <Typography sx={sectionTitleStyle}>Why This Matters</Typography>
-                <Box sx={{ color: "#374151", lineHeight: 1.7 }}>
-                  {ReactHtmlParser(eventDetail.whyThisMatters)}
-                </Box>
-              </Box>
-            )}
-
-            {eventDetail.whatToExpect && (
-              <Box mb={5}>
-                <Typography sx={sectionTitleStyle}>What to Expect</Typography>
-                <Box sx={{ color: "#374151", lineHeight: 1.7 }}>
-                  {ReactHtmlParser(eventDetail.whatToExpect)}
-                </Box>
-              </Box>
-            )}
-
-            {eventDetail.accessibilityVenuInfo && (
+            {eventDetail.description && (
               <Box
-                sx={{
-                  mt: 2,
-                }}
+                sx={{ color: "#374151", lineHeight: 1.7 }}
+                className="rich-text-content"
               >
-                <Typography
-                  sx={{
-                    fontSize: "1.25rem",
-                    fontWeight: 600,
-                    mb: 2,
-                  }}
-                >
-                  Accessibility & Venue Information
-                </Typography>
-                <Box sx={{ color: "#374151", lineHeight: 1.7 }}>
-                  {ReactHtmlParser(eventDetail.accessibilityVenuInfo)}
-                </Box>
+                {ReactHtmlParser(eventDetail.description)}
               </Box>
             )}
           </Box>
