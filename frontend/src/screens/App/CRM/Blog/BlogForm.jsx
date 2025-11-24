@@ -20,6 +20,7 @@ import { useCloudinaryUploadFile } from "../../../../hooks/useCloudinaryUploadFi
 import BaseAutocomplete from "../../../../components/Shared/Base/BaseAutocomplete";
 import { formHookInputHelper } from "../../../../utils/formHookInputHelper";
 import { useGetListDDLQuery } from "../../../../store/services/listApi";
+import LoadingWrapper from "../../../../components/Shared/Loading/LoadingWrapper";
 
 const BlogForm = ({
   blogDetail = null,
@@ -95,217 +96,225 @@ const BlogForm = ({
 
   return (
     <>
-      <Box padding={3}>
-        <Grid container spacing={2}>
-          {/* Main Content Area */}
-          <Grid size={{ xs: 12 }}>
-            <Grid container spacing={2}>
-              <Grid size={{ xs: 12, sm: 6 }}>
+      <LoadingWrapper loading={isBusy}>
+        <Box padding={3}>
+          <Grid container spacing={2}>
+            {/* Main Content Area */}
+            <Grid size={{ xs: 12 }}>
+              <Grid container spacing={2}>
+                <Grid size={{ xs: 12, sm: 6 }}>
+                  <Controller
+                    name="title"
+                    control={control}
+                    rules={{ required: "Title is required" }}
+                    render={({ field }) => (
+                      <TextField
+                        fullWidth
+                        label="Title"
+                        type="text"
+                        size="small"
+                        {...field}
+                        error={!!errors.title}
+                      />
+                    )}
+                  />
+                  {errors.title && (
+                    <p className="error">{errors.title.message}</p>
+                  )}
+                </Grid>
+
+                <Grid size={{ xs: 12, sm: 6 }}>
+                  <Controller
+                    name="author"
+                    control={control}
+                    rules={{ required: "Author is required" }}
+                    render={({ field }) => (
+                      <TextField
+                        fullWidth
+                        label="Author"
+                        type="text"
+                        size="small"
+                        {...field}
+                        error={!!errors.author}
+                      />
+                    )}
+                  />
+                  {errors.author && (
+                    <p className="error">{errors.author.message}</p>
+                  )}
+                </Grid>
+
+                <Grid size={{ xs: 12, sm: 6 }}>
+                  <Controller
+                    name="tags"
+                    control={control}
+                    rules={{ required: "Tag is required" }}
+                    render={({ field }) => (
+                      <TextField
+                        fullWidth
+                        label="Tags"
+                        type="text"
+                        size="small"
+                        {...field}
+                        error={!!errors.tags}
+                      />
+                    )}
+                  />
+                  {errors.tags && (
+                    <p className="error">{errors.tags.message}</p>
+                  )}
+                </Grid>
+
+                <Grid size={{ xs: 12, sm: 6 }}>
+                  <Controller
+                    name="category"
+                    control={control}
+                    rules={{ required: "Please select an Category." }}
+                    render={(props) => (
+                      <BaseAutocomplete
+                        {...formHookInputHelper(props)}
+                        fullWidth
+                        label="Category"
+                        onChange={(_, data) => {
+                          props?.field?.onChange(data);
+                        }}
+                        getOptionLabel={(opt) => opt && opt.name}
+                        isOptionEqualToValue={(opt, value) =>
+                          opt._id === value._id
+                        }
+                        options={blogCategories || []}
+                        loading={isLoadingCategories}
+                        loadingText="Loading Category..."
+                      />
+                    )}
+                  />
+                </Grid>
+
+                <Grid size={{ xs: 12, sm: 6 }}>
+                  <Controller
+                    name="isActive"
+                    control={control}
+                    render={({ field }) => (
+                      <FormControlLabel
+                        control={
+                          <Switch
+                            checked={field.value}
+                            {...field}
+                            color="primary"
+                          />
+                        }
+                        label="Is Active?"
+                      />
+                    )}
+                  />
+                </Grid>
+
+                <Grid size={{ xs: 12, sm: 6 }}>
+                  <Controller
+                    name="isFeatured"
+                    control={control}
+                    render={({ field }) => (
+                      <FormControlLabel
+                        control={
+                          <Switch
+                            checked={field.value}
+                            {...field}
+                            color="primary"
+                          />
+                        }
+                        label="Is Featured?"
+                      />
+                    )}
+                  />
+                </Grid>
+              </Grid>
+
+              {/* Rich Text Editor */}
+              <Grid size={12} mt={3}>
+                <div
+                  style={{
+                    color: "gray",
+                    fontSize: 15,
+                    marginBottom: ".75rem",
+                  }}
+                >
+                  Content
+                </div>
                 <Controller
-                  name="title"
+                  name="content"
                   control={control}
-                  rules={{ required: "Title is required" }}
-                  render={({ field }) => (
-                    <TextField
-                      fullWidth
-                      label="Title"
-                      type="text"
-                      size="small"
-                      {...field}
-                      error={!!errors.title}
+                  rules={{ required: "Content is required" }}
+                  render={({ field: { onChange } }) => (
+                    <RichTextEditor
+                      initialValue={
+                        blogDetail?.content
+                          ? blogDetail.content
+                          : "<p>Enter Blog Content.</p>"
+                      }
+                      onChange={onChange}
+                      error={!!errors?.content}
+                      helperText={errors?.content?.message}
                     />
                   )}
                 />
-                {errors.title && (
-                  <p className="error">{errors.title.message}</p>
-                )}
               </Grid>
 
-              <Grid size={{ xs: 12, sm: 6 }}>
+              {/* File Upload */}
+              <Grid size={12} mt={3}>
                 <Controller
-                  name="author"
+                  name="image"
                   control={control}
-                  rules={{ required: "Author is required" }}
+                  rules={{
+                    validate: (value) =>
+                      value?.existingFiles?.length > 0 ||
+                      value?.newFiles?.length > 0 ||
+                      "File is required.",
+                  }}
                   render={({ field }) => (
-                    <TextField
-                      fullWidth
-                      label="Author"
-                      type="text"
-                      size="small"
-                      {...field}
-                      error={!!errors.author}
-                    />
-                  )}
-                />
-                {errors.author && (
-                  <p className="error">{errors.author.message}</p>
-                )}
-              </Grid>
-
-              <Grid size={{ xs: 12, sm: 6 }}>
-                <Controller
-                  name="tags"
-                  control={control}
-                  rules={{ required: "Tag is required" }}
-                  render={({ field }) => (
-                    <TextField
-                      fullWidth
-                      label="Tags"
-                      type="text"
-                      size="small"
-                      {...field}
-                      error={!!errors.tags}
-                    />
-                  )}
-                />
-                {errors.tags && <p className="error">{errors.tags.message}</p>}
-              </Grid>
-
-              <Grid size={{ xs: 12, sm: 6 }}>
-                <Controller
-                  name="category"
-                  control={control}
-                  rules={{ required: "Please select an Category." }}
-                  render={(props) => (
-                    <BaseAutocomplete
-                      {...formHookInputHelper(props)}
-                      fullWidth
-                      label="Category"
-                      onChange={(_, data) => {
-                        props?.field?.onChange(data);
+                    <FileDropzone
+                      files={field.value}
+                      onFileChange={(files) => {
+                        field.onChange(files);
+                        trigger("image");
                       }}
-                      getOptionLabel={(opt) => opt && opt.name}
-                      isOptionEqualToValue={(opt, value) =>
-                        opt._id === value._id
-                      }
-                      options={blogCategories || []}
-                      loading={isLoadingCategories}
-                      loadingText="Loading Category..."
-                    />
-                  )}
-                />
-              </Grid>
-
-              <Grid size={{ xs: 12, sm: 6 }}>
-                <Controller
-                  name="isActive"
-                  control={control}
-                  render={({ field }) => (
-                    <FormControlLabel
-                      control={
-                        <Switch
-                          checked={field.value}
-                          {...field}
-                          color="primary"
-                        />
-                      }
-                      label="Is Active?"
-                    />
-                  )}
-                />
-              </Grid>
-
-              <Grid size={{ xs: 12, sm: 6 }}>
-                <Controller
-                  name="isFeatured"
-                  control={control}
-                  render={({ field }) => (
-                    <FormControlLabel
-                      control={
-                        <Switch
-                          checked={field.value}
-                          {...field}
-                          color="primary"
-                        />
-                      }
-                      label="Is Featured?"
+                      error={!!errors.image}
+                      helperText={errors.image?.message}
                     />
                   )}
                 />
               </Grid>
             </Grid>
 
-            {/* Rich Text Editor */}
-            <Grid size={12} mt={3}>
-              <div
-                style={{ color: "gray", fontSize: 15, marginBottom: ".75rem" }}
-              >
-                Content
-              </div>
-              <Controller
-                name="content"
-                control={control}
-                rules={{ required: "Content is required" }}
-                render={({ field: { onChange } }) => (
-                  <RichTextEditor
-                    initialValue={
-                      blogDetail?.content
-                        ? blogDetail.content
-                        : "<p>Enter Blog Content.</p>"
-                    }
-                    onChange={onChange}
-                    error={!!errors?.content}
-                    helperText={errors?.content?.message}
-                  />
-                )}
-              />
-            </Grid>
-
-            {/* File Upload */}
-            <Grid size={12} mt={3}>
-              <Controller
-                name="image"
-                control={control}
-                rules={{
-                  validate: (value) =>
-                    value?.existingFiles?.length > 0 ||
-                    value?.newFiles?.length > 0 ||
-                    "File is required.",
-                }}
-                render={({ field }) => (
-                  <FileDropzone
-                    files={field.value}
-                    onFileChange={(files) => {
-                      field.onChange(files);
-                      trigger("image");
-                    }}
-                    error={!!errors.image}
-                    helperText={errors.image?.message}
-                  />
-                )}
-              />
+            {/* Optional Sidebar (you can expand later) */}
+            <Grid size={{ xs: 12, md: 4 }}>
+              {/* You can add sidebar widgets here later */}
             </Grid>
           </Grid>
+        </Box>
 
-          {/* Optional Sidebar (you can expand later) */}
-          <Grid size={{ xs: 12, md: 4 }}>
-            {/* You can add sidebar widgets here later */}
-          </Grid>
-        </Grid>
-      </Box>
+        <Divider />
 
-      <Divider />
-
-      <Box
-        paddingX={3}
-        paddingY={2}
-        gap={2}
-        sx={{
-          display: "flex",
-          justifyContent: "flex-end",
-        }}
-      >
-        <Button disabled={isBusy} onClick={() => navigate(-1)}>
-          Cancel
-        </Button>
-        <Button
-          variant="contained"
-          disabled={isBusy}
-          onClick={handleSubmit(handleOnBlogSubmit)}
+        <Box
+          paddingX={3}
+          paddingY={2}
+          gap={2}
+          sx={{
+            display: "flex",
+            justifyContent: "flex-end",
+          }}
         >
-          {blogDetail ? "Update" : "Add"}
-        </Button>
-      </Box>
+          <Button disabled={isBusy} onClick={() => navigate(-1)}>
+            Cancel
+          </Button>
+          <Button
+            variant="contained"
+            disabled={isBusy}
+            onClick={handleSubmit(handleOnBlogSubmit)}
+          >
+            {blogDetail ? "Update" : "Add"}
+          </Button>
+        </Box>
+      </LoadingWrapper>
     </>
   );
 };

@@ -7,13 +7,17 @@ import ReactHtmlParser from "html-react-parser";
 import BreadcrumbLayout from "../../../../components/Shared/BreadCrumb/BreadcrumbLayout";
 import InformationTile from "../../../../components/Shared/InformationTile";
 import InfoGridSkeleton from "../../../../components/Shared/Skeleton/InfoGridSkeleton";
-import { useGetEventDetailQuery } from "../../../../store/services/eventApi";
+import {
+  useGetEventDetailQuery,
+  useUpdateEventMutation,
+} from "../../../../store/services/eventApi";
 import {
   formatEventDate,
   formatDateRange,
   getEventStatus,
   getRegistrationStatus,
 } from "../../../../utils/dateFormatter";
+import EventPathway from "../../../../components/Shared/EventPathWay";
 
 const sectionTitleStyle = {
   fontSize: "20px",
@@ -24,23 +28,29 @@ const sectionTitleStyle = {
 const EventDetailScreen = () => {
   const { id } = useParams();
 
+  const EVENT_STATUSES = ["Draft", "Published", "Cancelled", "Completed"];
+
+  const [updateEvent, { isLoading: updatingEvent }] = useUpdateEventMutation();
+
+  const handleUpdateEventStatus = async (status) => {
+    try {
+      await updateEvent({
+        _id: eventDetail?._id,
+        status,
+      }).unwrap();
+
+      toast.success("Event status updated!");
+    } catch (err) {
+      toast.error(err?.data?.message ?? "Couldn't update event status!");
+    }
+  };
+
   const breadcrumbs = [
     { title: "Events", path: "/app/crm/event/list" },
     { title: "Event Detail" },
   ];
 
   const { data: eventDetail, isLoading, error } = useGetEventDetailQuery(id);
-
-  const eventStatus = eventDetail
-    ? getEventStatus(eventDetail.startDate, eventDetail.endDate)
-    : null;
-
-  const registrationStatus = eventDetail
-    ? getRegistrationStatus(
-        eventDetail.registrationStartDate,
-        eventDetail.registrationEndDate
-      )
-    : null;
 
   const PageActions = () => (
     <Link to={`/app/crm/event/${id}/edit`}>
@@ -88,6 +98,13 @@ const EventDetailScreen = () => {
       error={error}
       headerActions={<PageActions />}
     >
+      <EventPathway
+        statuses={EVENT_STATUSES}
+        activeStatus={eventDetail?.status} // current status
+        onChange={(status) => handleUpdateEventStatus(status)}
+        isBusy={updatingEvent}
+      />
+
       <BreadcrumbLayout.Paper>
         <Box p={{ xs: 2, sm: 3 }}>
           {/* Badge Image - Full width on mobile, centered */}
@@ -145,10 +162,10 @@ const EventDetailScreen = () => {
                         eventDetail.status === "Published"
                           ? "success"
                           : eventDetail.status === "Draft"
-                          ? "default"
-                          : eventDetail.status === "Cancelled"
-                          ? "error"
-                          : "info"
+                            ? "default"
+                            : eventDetail.status === "Cancelled"
+                              ? "error"
+                              : "info"
                       }
                     />
                   </InformationTile>
