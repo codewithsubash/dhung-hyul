@@ -13,6 +13,7 @@ const userSchema = mongoose.Schema(
     },
 
     password: { type: String, required: true },
+    avatar: { publicId: String, url: String },
 
     phone: String,
     role: {

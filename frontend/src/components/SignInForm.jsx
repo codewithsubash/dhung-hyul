@@ -41,9 +41,12 @@ const SignInForm = ({ loggingIn, onSubmit = () => {} }) => {
 
       {/* Modal-like form */}
       <div className="relative z-10 w-full max-w-md rounded-2xl bg-white/95 p-8 shadow-2xl backdrop-blur-md">
-        <h2 className="mb-6 text-center text-2xl font-bold text-gray-800">
-          Welcome Back 👋
-        </h2>
+        <a href="/">
+          <h2 className="mb-6 text-center text-xl font-medium text-gray-800">
+            Dhung Hyul
+          </h2>
+        </a>
+        <h2 className="text-2xl font-semibold text-center mb-6">Log in</h2>
 
         <form onSubmit={handleSubmit(handleSignIn)} className="space-y-6">
           {/* Email field */}

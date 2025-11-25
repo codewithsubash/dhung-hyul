@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 
 const LIST_TYPES = {
   BLOG_CATEGORIES: "Blog Categories",
+  EVENT_CATEGORIES: "Event Categories",
 };
 
 const ListComponent = () => {

@@ -14,7 +14,7 @@
   }
 }
 @layer base {
-  html * {
+  html *:not(.rich-text-content):not(.rich-text-content *) {
     font-size: 1rem;
     font-weight: 400;
     font-family: "Montserrat", sans-serif !important;
@@ -179,6 +179,133 @@
     display: inline-block;
     clip-path: inset(0 2ch 0 0);
     animation: loading-animation 1s steps(4) infinite;
+  }
+  /* Rich Text Editor Content Styles */
+  .rich-text-content * {
+    font-family: "Montserrat", sans-serif !important;
+  }
+
+  .rich-text-content h1,
+  .rich-text-content h2,
+  .rich-text-content h3,
+  .rich-text-content h4,
+  .rich-text-content h5,
+  .rich-text-content h6 {
+    font-weight: 700 !important;
+    margin-bottom: 0.5em !important;
+    margin-top: 0.5em !important;
+    color: #212529 !important;
+  }
+
+  .rich-text-content h1,
+  .rich-text-content h1 * {
+    font-size: 2rem !important;
+  }
+
+  .rich-text-content h2,
+  .rich-text-content h2 * {
+    font-size: 1.75rem !important;
+  }
+
+  .rich-text-content h3,
+  .rich-text-content h3 * {
+    font-size: 1.5rem !important;
+  }
+
+  .rich-text-content h4,
+  .rich-text-content h4 * {
+    font-size: 1.25rem !important;
+  }
+
+  .rich-text-content h5,
+  .rich-text-content h5 * {
+    font-size: 1.125rem !important;
+  }
+
+  .rich-text-content h6,
+  .rich-text-content h6 * {
+    font-size: 1rem !important;
+  }
+
+  .rich-text-content ul {
+    list-style-type: disc !important;
+    padding-left: 2rem !important;
+    margin: 1rem 0 !important;
+  }
+
+  .rich-text-content ol {
+    list-style-type: decimal !important;
+    padding-left: 2rem !important;
+    margin: 1rem 0 !important;
+  }
+
+  .rich-text-content li {
+    margin-bottom: 0.5rem !important;
+    display: list-item !important;
+  }
+
+  .rich-text-content p {
+    margin-bottom: 1rem !important;
+    line-height: 1.7 !important;
+  }
+
+  .rich-text-content em {
+    font-style: italic !important;
+  }
+
+  .rich-text-content strong {
+    font-weight: 700 !important;
+  }
+
+  .rich-text-content a {
+    color: var(--primary) !important;
+    text-decoration: underline !important;
+  }
+
+  /* Override inline font sizes - target spans with style attributes */
+  .rich-text-content span[style*="font-size: 8pt"],
+  .rich-text-content *[style*="font-size: 8pt"] {
+    font-size: 0.67rem !important;
+  }
+
+  .rich-text-content span[style*="font-size: 10pt"],
+  .rich-text-content *[style*="font-size: 10pt"] {
+    font-size: 0.83rem !important;
+  }
+
+  .rich-text-content span[style*="font-size: 12pt"],
+  .rich-text-content *[style*="font-size: 12pt"] {
+    font-size: 1rem !important;
+  }
+
+  .rich-text-content span[style*="font-size: 14pt"],
+  .rich-text-content *[style*="font-size: 14pt"] {
+    font-size: 1.17rem !important;
+  }
+
+  .rich-text-content span[style*="font-size: 16pt"],
+  .rich-text-content *[style*="font-size: 16pt"] {
+    font-size: 1.33rem !important;
+  }
+
+  .rich-text-content span[style*="font-size: 18pt"],
+  .rich-text-content *[style*="font-size: 18pt"] {
+    font-size: 1.5rem !important;
+  }
+
+  .rich-text-content span[style*="font-size: 24pt"],
+  .rich-text-content *[style*="font-size: 24pt"] {
+    font-size: 2rem !important;
+  }
+
+  .rich-text-content span[style*="font-size: 36pt"],
+  .rich-text-content *[style*="font-size: 36pt"] {
+    font-size: 3rem !important;
+  }
+
+  .rich-text-content span[style*="font-size: 48pt"],
+  .rich-text-content *[style*="font-size: 48pt"] {
+    font-size: 4rem !important;
   }
 
   @keyframes loading-animation {

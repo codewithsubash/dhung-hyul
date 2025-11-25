@@ -37,7 +37,7 @@ export const createBlog = asyncHandler(async (req, res) => {
 export const listBlog = asyncHandler(async (req, res) => {
   const {
     active = "true",
-    limit = 8,
+    limit = 10,
     page = 1,
     search = "",
     sortBy = "createdAt",

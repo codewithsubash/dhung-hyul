@@ -8,7 +8,7 @@ const slides = [
     title: "Make a Donation",
     subtitle: "Your small act can change someone's world.",
     bg: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30",
-    icon: <Heart size={26} />, 
+    icon: <Heart size={26} />,
     button: "Donate Now",
   },
   {
@@ -16,7 +16,7 @@ const slides = [
     title: "Become a Volunteer",
     subtitle: "Join hands with us and make a real impact.",
     bg: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d",
-    icon: <Users size={26} />, 
+    icon: <Users size={26} />,
     button: "Join the Mission",
   },
   {
@@ -24,7 +24,7 @@ const slides = [
     title: "Sponsor a Cause",
     subtitle: "Support long-term projects that uplift communities.",
     bg: "https://images.unsplash.com/photo-1509099836639-18ba1795216d",
-    icon: <Handshake size={26} />, 
+    icon: <Handshake size={26} />,
     button: "Sponsor Us",
   },
 ];
@@ -71,8 +71,12 @@ export default function HeroSlider() {
 
               {isActive && (
                 <div className="relative h-full flex flex-col justify-center px-8 md:px-16 max-w-xl">
-                  <h1 className="text-3xl md:text-5xl font-bold mb-4 drop-shadow-xl">{slide.title}</h1>
-                  <p className="text-base md:text-lg mb-6 text-gray-200 drop-shadow">{slide.subtitle}</p>
+                  <h1 className="text-3xl md:text-5xl font-bold mb-4 drop-shadow-xl">
+                    {slide.title}
+                  </h1>
+                  <p className="text-base md:text-lg mb-6 text-gray-200 drop-shadow">
+                    {slide.subtitle}
+                  </p>
                   <button className="bg-green-600 px-6 py-3 rounded-full text-lg font-semibold hover:bg-green-700 w-fit transition-colors">
                     {slide.button}
                   </button>
