@@ -1,14 +1,16 @@
 import React from 'react'
-import EventHeader from './EventHeader'
 import EventSection from './EventSection'
 import LatestEventSection from './LatestEventSection'
+import IntroCard from '../components/IntroCard'
+import EndingCard from '../components/EndingCard'
 
 const EventScreen = () => {
   return (
     <div>
-      <EventHeader />
+      <IntroCard title="Events" />
       <EventSection />
       <LatestEventSection />
+      <EndingCard title="Events" />
     </div>
   )
 }

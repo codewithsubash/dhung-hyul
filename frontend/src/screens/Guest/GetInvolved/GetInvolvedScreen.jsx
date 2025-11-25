@@ -1,13 +1,15 @@
 import React from 'react'
-import GetInvolvedHeader from './GetInvolvedHeader'
 import GetInvolved from './GetInvolved'
 import ImpactSection from '../Home/ImpactSection'
+import IntroCard from '../components/IntroCard'
+import EndingCard from '../components/EndingCard'
 const GetInvolvedScreen = () => {
   return (
     <div>
-        <GetInvolvedHeader />
+        <IntroCard title="Get Involved" />
         <GetInvolved />
         <ImpactSection />
+        <EndingCard title="Get Involved" />
         
     </div>
   )
