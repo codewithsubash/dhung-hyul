@@ -5,12 +5,19 @@ import eventsImg from "../../../assets/images/events.jpeg";
 import contactImg from "../../../assets/images/contact.jpeg";
 import involvedImg from "../../../assets/images/getInvolved.jpeg";
 import eventDetailsImg from "../../../assets/images/eventDetails.jpeg";
+import aboutImg from "../../../assets/images/about.jpeg";
 
 
 const introCardData = [
   {
     title: "Gallery",
     image: galleryImg,
+    description:
+      "Explore our moments, events, and stories captured through photographs.",
+  },
+  {
+    title: "About",
+    image: aboutImg,
     description:
       "Explore our moments, events, and stories captured through photographs.",
   },
