@@ -13,8 +13,6 @@ const BlogDetailScreen = () => {
   const { id } = useParams();
 
   const breadcrumbs = [
-    { title: "Settings", path: "/app/crm/setting" },
-
     { title: "Blogs", path: "/app/crm/blog/list" },
     { title: "Blog Detail" },
   ];

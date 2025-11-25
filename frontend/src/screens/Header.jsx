@@ -23,8 +23,8 @@ export default function Header() {
 
   return (
     <header
-      className={`fixed top-6 left-0 right-0 z-50 mx-12 px-6 py-2 
-  bg-[#EDF5F2]/90 backdrop-blur-lg rounded-full shadow-sm 
+      className={`fixed top-6 left-0 right-0 z-50 mx-12 px-6 py-3 
+  bg-[#EDF5F2]/90 backdrop-blur-lg rounded-2xl shadow-sm 
   transition-transform duration-500 flex items-center justify-between
   ${showHeader ? "translate-y-0" : "-translate-y-[calc(100%+3.5rem)]"}`}
     >
@@ -35,48 +35,24 @@ export default function Header() {
       </div>
 
       {/* DESKTOP MENU */}
-      <nav className="hidden min-[1395px]:flex items-center gap-10 text-[16px] font-medium">
-        <a href="/" className="hover:text-green-700 transition">
+      <nav className="hidden min-[1395px]:flex items-center gap-10 text-[16px] font-semibold">
+        <a href="/" className="hover:text-green-700 font-medium transition">
           Home
-        </a>
-
-        <a href="/programmes" className="hover:text-green-700 transition">
-          Programmes
-        </a>
-
-        <a href="/gallery" className="hover:text-green-700 transition-colors">
-          Gallery
-        </a>
-        <a href="/events" className="hover:text-green-700 transition-colors">
-          Event
-        </a>
-        <a href="/contact" className="hover:text-green-700 transition-colors">
-          Contact
-        </a>
-        <a
-          href="/getinvolved"
-          className="hover:text-green-700 transition-colors"
-        >
-          Get Involved
-        </a>
-
-        <a href="/events" className="hover:text-green-700 transition">
-          Events
         </a>
 
         {/* ABOUT US DROPDOWN */}
         <div
-          className="relative group"
+          className="relative  group"
           onMouseEnter={() => setAboutOpen(true)}
           onMouseLeave={() => setAboutOpen(false)}
         >
-          <button className="flex items-center py-2 hover:text-green-700 transition">
+          <button className="flex items-center py-2 hover:text-green-700 font-medium transition">
             About Us <KeyboardArrowDownOutlined fontSize="small" />
           </button>
 
           {aboutOpen && (
             <div
-              className="absolute top-10 left-0 bg-white shadow-lg rounded-2xl 
+              className="absolute top-10 left-0  bg-white shadow-lg rounded-2xl 
               p-4 w-48 animate-fadeIn"
             >
               <a
@@ -97,18 +73,41 @@ export default function Header() {
               >
                 Our Supporters
               </a>
+              <a
+                className="block px-2 py-2 rounded hover:bg-gray-100"
+                href="/gallery"
+              >
+                Gallery
+              </a>
             </div>
           )}
         </div>
 
-        <a href="/contact" className="hover:text-green-700 transition">
+        <a
+          href="/events"
+          className="hover:text-green-700 font-medium transition"
+        >
+          Events
+        </a>
+
+        <a
+          href="/getinvolved"
+          className="hover:text-green-700 font-medium transition-colors"
+        >
+          Get Involved
+        </a>
+
+        <a
+          href="/contact"
+          className="hover:text-green-700 font-medium transition"
+        >
           Contact
         </a>
 
         {/* LOG IN BUTTON (instead of Get Involved) */}
         <a
           href="/sign-in"
-          className="px-4 py-[6px] rounded-xl border border-green-700 text-green-800 
+          className="px-4 py-[6px] rounded-xl border font-medium border-green-700 text-green-800 
           hover:bg-green-700 hover:text-white transition"
         >
           Log In
@@ -117,7 +116,7 @@ export default function Header() {
         {/* DONATE */}
         <a
           href="/donate"
-          className="bg-green-800 text-white px-5 py-[7px] rounded-xl hover:bg-green-700 transition"
+          className="bg-green-800 text-white px-5 py-[7px] font-medium rounded-xl hover:bg-green-700 transition"
         >
           Donate
         </a>
@@ -134,23 +133,13 @@ export default function Header() {
       {/* MOBILE MENU DRAWER */}
       {mobileOpen && (
         <div className="absolute top-16 left-0 w-full bg-white shadow-lg p-5 flex flex-col gap-4 min-[1395px]:hidden">
-          <a href="/" className="hover:text-green-700">
+          <a href="/" className="hover:text-green-700 font-medium">
             Home
-          </a>
-          <a href="/programmes" className="hover:text-green-700">
-            Programmes
-          </a>
-          <a href="/events" className="hover:text-green-700">
-            Events
-          </a>
-
-          <a href="/gallery" className="hover:text-green-700">
-            Gallery
           </a>
 
           {/* ABOUT US MOBILE DROPDOWN */}
           <details>
-            <summary className="cursor-pointer flex items-center justify-between">
+            <summary className="cursor-pointer flex items-center justify-between font-medium">
               About Us <KeyboardArrowDownOutlined />
             </summary>
             <div className="ml-3 mt-2 flex flex-col gap-2">
@@ -163,20 +152,27 @@ export default function Header() {
               <a href="/supporters" className="hover:text-green-700">
                 Our Supporters
               </a>
+              <a href="/gallery" className="hover:text-green-700">
+                Gallery
+              </a>
             </div>
           </details>
 
-          <a href="/contact" className="hover:text-green-700">
+          <a href="/events" className="hover:text-green-700 font-medium">
+            Events
+          </a>
+
+          <a href="/contact" className="hover:text-green-700 font-medium">
             Contact
           </a>
 
-          <a href="/sign-in" className="hover:text-green-700">
+          <a href="/sign-in" className="hover:text-green-700 font-medium">
             Log In
           </a>
 
           <a
             href="/donate"
-            className="bg-green-800 text-white text-center py-2 rounded-full mt-2"
+            className="bg-green-800 text-white text-center py-2 rounded-full mt-2 font-medium"
           >
             Donate
           </a>

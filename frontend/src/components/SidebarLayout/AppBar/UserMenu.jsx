@@ -10,11 +10,7 @@ import {
   MenuItem,
   Switch,
 } from "@mui/material";
-import {
-  DarkModeOutlined,
-  AccountCircleOutlined,
-  Logout,
-} from "@mui/icons-material";
+import { AccountCircleOutlined, Logout } from "@mui/icons-material";
 
 import { useSidebarLayoutContext } from "../context/SidebarLayoutContext";
 import { removeUser, selectLoggedInUser } from "../../../store/authSlice";
@@ -49,16 +45,13 @@ const UserMenu = () => {
         aria-haspopup="true"
         aria-expanded={opened ? "true" : undefined}
       >
-        <Avatar
-          src={loggedInUser?.avatar?.secureUrl}
-          sx={{ width: 32, height: 32 }}
-        >
+        <Avatar src={loggedInUser?.avatar?.url} sx={{ width: 32, height: 32 }}>
           {loggedInUser?.name?.charAt(0)?.toUpperCase()}
         </Avatar>
+        {showSidebar && <UserGreeting />}
       </IconButton>
 
       {/* 👇 Only show when sidebar is open */}
-      {showSidebar && <UserGreeting />}
 
       <Menu
         anchorEl={anchorEl}

@@ -7,6 +7,9 @@ import { useAuth } from "../hooks/useAuth";
 import CRMSidebar from "../components/Sidebar/CRMSidebar";
 import NotFoundScreen from "../screens/NotFoundScreen";
 import CRMOnly from "./middlewares/CRMOnly";
+import UserProfileScreen from "../screens/App/CRM/User/UserProfileScreen";
+import ChangePasswordScreen from "../screens/App/CRM/User/ChangePasswordScreen";
+import EditUserProfileScreen from "../screens/App/CRM/User/EditProfileScreen";
 
 const AppRouter = () => {
   const { isAdmin } = useAuth();
@@ -31,6 +34,14 @@ const AppRouter = () => {
     <Routes>
       <Route element={<SidebarLayout {...sidebarProps} />}>
         <Route index element={<Navigate to="crm" replace />} />
+
+        <Route path="/me">
+          <Route index element={<UserProfileScreen />} />
+
+          <Route path="change-password" element={<ChangePasswordScreen />} />
+          <Route path="update" element={<EditUserProfileScreen />} />
+          <Route path="*" element={<NotFoundScreen />} />
+        </Route>
 
         <Route
           path="crm/*"

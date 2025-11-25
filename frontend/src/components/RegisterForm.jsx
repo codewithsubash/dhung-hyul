@@ -49,6 +49,11 @@ const RegisterForm = ({ onSubmit = () => {}, loadingUser }) => {
 
       {/* Modal */}
       <div className="relative z-10 w-full max-w-md bg-white rounded-lg shadow-lg p-8">
+        <a href="/">
+          <h2 className="mb-6 text-center text-xl font-medium text-gray-800">
+            Dhung Hyul
+          </h2>
+        </a>
         <h2 className="text-2xl font-semibold text-center mb-6">
           Register a new account
         </h2>
