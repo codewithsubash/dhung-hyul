@@ -19,13 +19,6 @@ const heightClass =
     ? "h-[400px]"
     : "h-[280px]"; // small
 
-const widthClass =
-  size === "large"
-    ? "w-[700px]"           // or w-[500px] if you want fixed width
-    : size === "medium"
-    ? "w-[400px]"
-    : "w-[600px]";       // small
-
 
   return (
     <div 

@@ -1,6 +1,7 @@
 import React,{useEffect} from 'react'
-import EventDetailHeader from './components/EventDetailHeader'
 import EventDetailBody from './components/EventDetailBody'
+import IntroCard from '../components/IntroCard'
+import EndingCard from '../components/EndingCard';
 
 const EventDetails = () => {
     useEffect(() => {
@@ -8,8 +9,9 @@ const EventDetails = () => {
   }, []);
   return (
     <div>
-        <EventDetailHeader />
+        <IntroCard title="Event Details" />
         <EventDetailBody /> 
+        <EndingCard title="Event Details" />
     </div>
   )
 }

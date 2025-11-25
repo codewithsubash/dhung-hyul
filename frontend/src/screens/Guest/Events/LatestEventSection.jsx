@@ -56,25 +56,21 @@ const LatestEventSection = () => {
   return (
     <div className="relative min-h-screen py-16 px-5 flex flex-col items-center  overflow-hidden">
       
-       {/* Section Header */}
-        <div className="mb-12 mr-60">
-          <p className="text-teal-600 font-medium mb-3">Featured Events</p>
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 leading-tight">
-            Key Upcoming Events <br /> You Won't Want to Miss
-          </h2>
-        </div>
+      <div className="mb-12 mr-[763px]">
+        <p className="text-teal-600 font-medium mb-3">Latest Events</p>
+        <h2 className="text-4xl md:text-5xl font-bold text-gray-900 leading-tight">
+          Key Upcoming Events <br /> You Won't Want to Miss
+        </h2>
+      </div>
 
 
       {/* Decorative blurred shapes */}
       <div className="absolute top-[-100px] left-[-80px] w-72 h-72 rounded-full filter blur-3xl opacity-30"></div>
       <div className="absolute bottom-[-80px] right-[-100px] w-96 h-96  rounded-full filter blur-3xl opacity-20"></div>
 
-      {/* <h1 className="text-4xl font-bold text-center mb-4">Our Blog</h1>
-      <p className="text-center text-gray-600 mb-12 text-lg">
-        Explore our latest articles, tutorials, and insights from the world of web development.
-      </p> */}
+     
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10  max-w-9xl mx-auto px-4 md:px-6 lg:px-8">
         {blogs.map((blog, index) => (
           <LatestEventCard
             key={index}

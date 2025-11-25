@@ -1,15 +1,15 @@
 import React from 'react'
-import BlogHeader from './BlogHeader'
 import BlogCardSection from './BlogCardSection'
-import BlogFooter from './BlogFooter'
+import IntroCard from '../components/IntroCard'
+import EndingCard from '../components/EndingCard'
 
 const BlogScreen = () => {
   return (
     <div className='overflow-hidden'>
       
-      <BlogHeader />
+      <IntroCard title="Blog" />
       <BlogCardSection />
-      <BlogFooter />
+      <EndingCard title="Blog" />
     </div>
   )
 }

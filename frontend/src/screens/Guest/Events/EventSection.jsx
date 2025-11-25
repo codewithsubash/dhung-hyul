@@ -34,34 +34,44 @@ const EventSection = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50  py-16 px-5 md:px-10">
-      <div className="max-w-7xl mx-auto">
-        
-        {/* Section Header */}
-        <div className="mb-12">
-          <p className="text-teal-600 font-medium mb-3">Featured Events</p>
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 leading-tight">
-            Key Upcoming Events <br /> You Won't Want to Miss
-          </h2>
-        </div>
+   <div className="min-h-screen bg-gray-50 py-16 px-5 md:px-10">
 
-        {/* Grid Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+  {/* Width Container */}
+  <div className="max-w-9xl mx-auto">
 
-          {/* Large Left Card */}
-          <div className="lg:row-span-2">
-            <EventCard {...events[0]} />
-          </div>
+    {/* Shared Padding for Header + Grid */}
+    <div className="px-4 md:px-6 lg:px-8">
 
-          {/* Right Column (Two Medium Cards) */}
-          <div className="space-y-8">
-            <EventCard {...events[1]} />
-            <EventCard {...events[2]} />
-          </div>
-
-        </div>
+      {/* Header */}
+      <div className="mb-12">
+        <p className="text-teal-600 font-medium mb-3">Featured Events</p>
+        <h2 className="text-4xl md:text-5xl font-bold text-gray-900 leading-tight">
+          Key Upcoming Events <br /> You Won't Want to Miss
+        </h2>
       </div>
+
+      {/* Grid */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+
+        {/* Left Large Card */}
+        <div className="lg:row-span-2">
+          <EventCard {...events[0]} />
+        </div>
+
+        {/* Right Two Cards */}
+        <div className="space-y-8">
+          <EventCard {...events[1]} />
+          <EventCard {...events[2]} />
+        </div>
+
+      </div>
+
     </div>
+
+  </div>
+
+</div>
+
   );
 };
 
