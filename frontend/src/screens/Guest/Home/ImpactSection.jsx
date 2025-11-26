@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function ImpactSection() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-emerald-900 rounded-3xl via-teal-900 to-slate-800 text-white p-8 md:p-16">
+    <div className="min-h-screen bg-gradient-to-br from-emerald-900 rounded-3xl via-teal-900 to-slate-800 text-white ml-2 p-8 md:p-16">
       <div className="max-w-7xl mx-auto">
         {/* Header Section */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-16">
