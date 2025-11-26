@@ -7,7 +7,6 @@ import involvedImg from "../../../assets/images/getInvolved.jpeg";
 import eventDetailsImg from "../../../assets/images/eventDetails.jpeg";
 import aboutImg from "../../../assets/images/about.jpeg";
 
-
 const introCardData = [
   {
     title: "Gallery",
@@ -23,7 +22,7 @@ const introCardData = [
   },
   {
     title: "Blog",
-    image:blogImg,
+    image: blogImg,
     description:
       "Read stories, updates, and insights from our community and volunteers.",
   },
@@ -62,8 +61,12 @@ const IntroCard = ({ title, image, description }) => {
   const finalDescription = description || data?.description || "";
 
   return (
-    <div className="relative w-full h-[400px] md:h-[480px] rounded-3xl overflow-hidden">
-      <img src={finalImage} alt={title} className="w-full h-full object-cover" />
+    <div className="relative w-full h-[400px] md:h-[480px] rounded-b-3xl overflow-hidden">
+      <img
+        src={finalImage}
+        alt={title}
+        className="w-full h-full object-cover"
+      />
 
       <div className="absolute inset-0 bg-black/50"></div>
 

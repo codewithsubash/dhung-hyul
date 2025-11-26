@@ -3,6 +3,7 @@ import { LoadingButton } from "@mui/lab";
 import React from "react";
 import { Controller, useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
+import login from "../assets/images/login.jpg";
 
 const INITIAL_STATE = {
   email: "",
@@ -32,8 +33,7 @@ const SignInForm = ({ loggingIn, onSubmit = () => {} }) => {
     <div
       className="relative flex min-h-screen items-center justify-center bg-cover bg-center"
       style={{
-        backgroundImage:
-          "url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1950&q=80')",
+        backgroundImage: `url(${login})`,
       }}
     >
       {/* Dark overlay */}

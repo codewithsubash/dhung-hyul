@@ -4,6 +4,7 @@ import { toast } from "react-toastify";
 import BaseTextField from "./Shared/Base/BaseTextField";
 import { LoadingButton } from "./Shared/LoadingButton";
 import { Link } from "react-router-dom";
+import login from "../assets/images/login.jpg";
 
 const INITIAL_STATE = {
   name: "",
@@ -40,8 +41,7 @@ const RegisterForm = ({ onSubmit = () => {}, loadingUser }) => {
       <div
         className="absolute inset-0 bg-cover bg-center z-0"
         style={{
-          backgroundImage:
-            "url('https://source.unsplash.com/1600x900/?technology,abstract')",
+          backgroundImage: `url(${login})`,
         }}
       />
       {/* Dark Overlay */}

@@ -10,6 +10,7 @@ import cloudinaryRoutes from "./routes/cloudinaryRoutes.js";
 import blogRoutes from "./routes/blogRoutes.js";
 import eventRoutes from "./routes/eventRoutes.js";
 import listRoutes from "./routes/listRoutes.js";
+import publicRoutes from "./routes/publicRoutes.js";
 
 const app = express();
 
@@ -22,6 +23,7 @@ app.use("/api/cloudinary", cloudinaryRoutes);
 app.use("/api/blogs", blogRoutes);
 app.use("/api/events", eventRoutes);
 app.use("/api/customize-list", listRoutes);
+app.use("/api/public", publicRoutes);
 
 const PORT = process.env.PORT || 5000;
 
