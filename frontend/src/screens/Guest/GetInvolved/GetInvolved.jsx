@@ -1,13 +1,16 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Heart, Handshake, Users } from "lucide-react";
+import donationImg from "../../../assets/images/donation.jpg";
+import volunteerImg from "../../../assets/images/volunteer.jpg";
+import sponsorImg from "../../../assets/images/sponsor.jpg";
 
 const slides = [
   {
     id: "donate",
     title: "Make a Donation",
     subtitle: "Your small act can change someone's world.",
-    bg: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30",
+    bg: donationImg,
     icon: <Heart size={26} />,
     button: "Donate Now",
   },
@@ -15,7 +18,7 @@ const slides = [
     id: "volunteer",
     title: "Become a Volunteer",
     subtitle: "Join hands with us and make a real impact.",
-    bg: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d",
+    bg: volunteerImg,
     icon: <Users size={26} />,
     button: "Join the Mission",
   },
@@ -23,7 +26,7 @@ const slides = [
     id: "sponsor",
     title: "Sponsor a Cause",
     subtitle: "Support long-term projects that uplift communities.",
-    bg: "https://images.unsplash.com/photo-1509099836639-18ba1795216d",
+    bg: sponsorImg,
     icon: <Handshake size={26} />,
     button: "Sponsor Us",
   },

@@ -128,7 +128,7 @@ const UserListScreen = () => {
       isBusy={isBusy}
     >
       <BreadcrumbLayout.Paper>
-        <CustomTabs tabs={userListTabs} defaultValue={role} />
+        <CustomTabs tabs={userListTabs} activeTab={role} />
         <TableFilter searchLabel="Name/Email" disabled={isBusy}>
           <div className="font-medium"> Users </div>
         </TableFilter>
@@ -153,7 +153,7 @@ export default UserListScreen;
 
 const PageActions = () => {
   return (
-    <Link to="/app/crm/user/create?typeRefSource=User">
+    <Link to="/app/crm/user/create">
       <Button startIcon={<Add />} variant="contained">
         New User
       </Button>
