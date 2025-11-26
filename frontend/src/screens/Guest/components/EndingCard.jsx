@@ -7,6 +7,7 @@ import eventsImg from "../../../assets/images/events.jpeg";
 import contactImg from "../../../assets/images/contact.jpeg";
 import involvedImg from "../../../assets/images/getInvolved.jpeg";
 import eventDetailsImg from "../../../assets/images/eventDetails.jpeg";
+import aboutImg from "../../../assets/images/about.jpeg";
 
 const endingCardData = [
   {
@@ -15,6 +16,14 @@ const endingCardData = [
     description: "Discover the moments that define our mission and community.",
     image: galleryImg,
     primaryButton: "View Gallery",
+    secondaryButton: "Contact Us"
+  },
+   {
+    title: "About",
+    heading: "Explore Our Visual Journey",
+    description: "Discover the moments that define our mission and community.",
+    image: aboutImg,
+    primaryButton: "About Us",
     secondaryButton: "Contact Us"
   },
   {
