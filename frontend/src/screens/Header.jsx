@@ -143,7 +143,7 @@ export default function Header() {
               About Us <KeyboardArrowDownOutlined />
             </summary>
             <div className="ml-3 mt-2 flex flex-col gap-2">
-              <a href="/who-we-are" className="hover:text-green-700">
+              <a href="/about" className="hover:text-green-700">
                 Who we are
               </a>
               <a href="/blog" className="hover:text-green-700">

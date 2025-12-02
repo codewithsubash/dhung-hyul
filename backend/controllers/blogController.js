@@ -3,16 +3,8 @@ import Blog from "../models/BlogModel.js";
 import { generateSlug } from "../utils/generateSlug.js";
 
 export const createBlog = asyncHandler(async (req, res) => {
-  const {
-    image,
-    title,
-    content,
-    author,
-    isActive,
-    isFeatured,
-    category,
-    tags,
-  } = req.body;
+  const { image, title, content, author, isActive, isFeatured, category } =
+    req.body;
 
   const blog = new Blog({
     image,
@@ -23,7 +15,6 @@ export const createBlog = asyncHandler(async (req, res) => {
     isFeatured,
     category,
     createdBy: req.user._id,
-    tags,
   });
 
   await blog.generateBlogSlug();
@@ -75,7 +66,7 @@ export const listBlog = asyncHandler(async (req, res) => {
 });
 
 export const getBlogById = asyncHandler(async (req, res) => {
-  const blog = await Blog.findById(req.params.id);
+  const blog = await Blog.findById(req.params.id).populate("category", "name");
 
   if (!blog) throw new Error("Blog Not Found");
 
@@ -83,16 +74,8 @@ export const getBlogById = asyncHandler(async (req, res) => {
 });
 
 export const updateBlog = asyncHandler(async (req, res) => {
-  const {
-    image,
-    title,
-    content,
-    author,
-    isActive,
-    isFeatured,
-    category,
-    tags,
-  } = req.body;
+  const { image, title, content, author, isActive, isFeatured, category } =
+    req.body;
 
   const existingBlog = await Blog.findById(req.params.id);
   if (!existingBlog) {
@@ -108,7 +91,6 @@ export const updateBlog = asyncHandler(async (req, res) => {
     isActive,
     isFeatured,
     category,
-    tags,
   };
 
   if (title && title !== existingBlog.title) {

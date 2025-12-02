@@ -22,14 +22,6 @@ const getCurrentDateTime = () => {
   return moment().format("YYYY-MM-DDTHH:mm");
 };
 
-// Validation function for future datetime
-const validateFutureDateTime = (value) => {
-  if (!value) return true;
-  const selectedDate = moment(value);
-  const now = moment();
-  return selectedDate.isAfter(now) || "Date and time must be in the future";
-};
-
 const EventForm = ({
   eventDetail = null,
   isBusy = false,
@@ -213,7 +205,6 @@ const EventForm = ({
                 control={control}
                 rules={{
                   required: "Registration start date is required",
-                  validate: validateFutureDateTime,
                 }}
                 render={({ field }) => (
                   <TextField
@@ -224,9 +215,6 @@ const EventForm = ({
                     size="small"
                     InputLabelProps={{
                       shrink: true,
-                    }}
-                    inputProps={{
-                      min: getCurrentDateTime(),
                     }}
                     value={
                       field.value
@@ -250,8 +238,7 @@ const EventForm = ({
                 name="registrationEndDate"
                 control={control}
                 rules={{
-                  required: "Registration end date is required",
-                  validate: validateFutureDateTime,
+                  required: "Registration start date is required",
                 }}
                 render={({ field }) => (
                   <TextField
@@ -262,9 +249,6 @@ const EventForm = ({
                     size="small"
                     InputLabelProps={{
                       shrink: true,
-                    }}
-                    inputProps={{
-                      min: getCurrentDateTime(),
                     }}
                     value={
                       field.value
@@ -288,8 +272,7 @@ const EventForm = ({
                 name="startDate"
                 control={control}
                 rules={{
-                  required: "Event start date is required",
-                  validate: validateFutureDateTime,
+                  required: "Registration start date is required",
                 }}
                 render={({ field }) => (
                   <TextField
@@ -300,9 +283,6 @@ const EventForm = ({
                     size="small"
                     InputLabelProps={{
                       shrink: true,
-                    }}
-                    inputProps={{
-                      min: getCurrentDateTime(),
                     }}
                     value={
                       field.value
@@ -326,8 +306,7 @@ const EventForm = ({
                 name="endDate"
                 control={control}
                 rules={{
-                  required: "Event end date is required",
-                  validate: validateFutureDateTime,
+                  required: "Registration start date is required",
                 }}
                 render={({ field }) => (
                   <TextField
@@ -338,9 +317,6 @@ const EventForm = ({
                     size="small"
                     InputLabelProps={{
                       shrink: true,
-                    }}
-                    inputProps={{
-                      min: getCurrentDateTime(),
                     }}
                     value={
                       field.value

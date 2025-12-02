@@ -21,9 +21,7 @@ const blogSchema = mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "List",
     },
-    tags: {
-      type: String,
-    },
+
     slug: {
       type: String,
       unique: true,

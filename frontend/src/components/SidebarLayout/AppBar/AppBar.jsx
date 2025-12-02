@@ -65,7 +65,7 @@ const AppBar = ({ appBarContent: AppBarContent }) => {
           </IconButton> */}
 
           {/* <div>{!showSidebar && <AppLogo />}</div> */}
-          <div>{!showSidebar && "Subash"}</div>
+          <div>{!showSidebar && "Dhung Hyul"}</div>
 
           <Box
             display="flex"

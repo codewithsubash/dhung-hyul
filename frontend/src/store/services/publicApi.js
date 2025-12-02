@@ -14,7 +14,34 @@ export const publicApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: [{ type: "Public", id: "LIST" }],
     }),
+
+    getPublicBlogList: builder.query({
+      query: (params) => ({ url: `${PUBLIC_BASE_URL}/blog-list`, params }),
+      providesTags: (result) => result[{ type: "Blog", id: "LIST" }],
+    }),
+
+    getPublicBlogDetail: builder.query({
+      query: (slug) => `${PUBLIC_BASE_URL}/blog/${slug}`,
+      providesTags: (result, error, id) => [{ type: "Blog", id: "LIST" }],
+    }),
+    getPublicEventList: builder.query({
+      query: (params) => ({ url: `${PUBLIC_BASE_URL}/event-list`, params }),
+      providesTags: (result) => [{ type: "Event", id: "LIST" }],
+    }),
+
+    getPublicEventDetail: builder.query({
+      query: (slug) => `${PUBLIC_BASE_URL}/event/${slug}`,
+      providesTags: (result, error, id) => [{ type: "Event", id: "LIST" }],
+    }),
   }),
 });
 
-export const { useSubmitContactFormMutation } = publicApi;
+export const {
+  useSubmitContactFormMutation,
+  useGetPublicBlogListQuery,
+  useLazyGetPublicBlogListQuery,
+  useGetPublicBlogDetailQuery,
+  useGetPublicEventListQuery,
+  useGetPublicEventDetailQuery,
+  useLazyGetPublicEventListQuery,
+} = publicApi;
