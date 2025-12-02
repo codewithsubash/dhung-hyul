@@ -45,7 +45,6 @@ const BlogForm = ({
       title: "",
       author: "",
       content: "",
-      tags: "",
       slug: "",
       isFeatured: false,
       isActive: true,
@@ -144,7 +143,7 @@ const BlogForm = ({
                   )}
                 </Grid>
 
-                <Grid size={{ xs: 12, sm: 6 }}>
+                {/* <Grid size={{ xs: 12, sm: 6 }}>
                   <Controller
                     name="tags"
                     control={control}
@@ -163,7 +162,7 @@ const BlogForm = ({
                   {errors.tags && (
                     <p className="error">{errors.tags.message}</p>
                   )}
-                </Grid>
+                </Grid> */}
 
                 <Grid size={{ xs: 12, sm: 6 }}>
                   <Controller

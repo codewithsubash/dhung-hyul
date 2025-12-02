@@ -99,3 +99,16 @@ export const getRegistrationStatus = (startDate, endDate) => {
     bgColor: "bg-green-100",
   };
 };
+
+// utils/formatDate.js
+
+export function formatDate(date) {
+  if (!date) return "";
+
+  const d = new Date(date);
+  return d.toLocaleDateString("en-US", {
+    month: "short",
+    day: "2-digit",
+    year: "numeric",
+  });
+}

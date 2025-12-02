@@ -1,87 +1,28 @@
-import React, { useState } from 'react';
-import { ArrowUpRight } from 'lucide-react';
-import BlogCard from './components/BlogCard';
+import React, { useState } from "react";
+import { ArrowUpRight } from "lucide-react";
+import BlogCard from "./components/BlogCard";
+import { useLazyGetPublicBlogListQuery } from "../../../store/services/publicApi";
+import CardSkeleton from "./components/CardSkeleton";
 
 // BlogScreen Component
 const BlogCardSection = () => {
-  const blogs = [
-    {
-      image: "https://images.unsplash.com/photo-1593642532871-8b12e02d091c",
-      title: "Learning React",
-      description: "A quick guide to get started with React components.",
-      link: "https://reactjs.org",
-      category: "React",
-      date: "Nov 10, 2025"
-    },
-    {
-      image: "https://images.unsplash.com/photo-1581091012184-14c23f5df9ae",
-      title: "Web Development Tips",
-      description: "Improve your web development skills with these tips.",
-      link: "https://developer.mozilla.org",
-      category: "Web Dev",
-      date: "Nov 12, 2025"
-    },
-    {
-      image: "https://images.unsplash.com/photo-1517430816045-df4b7de11d1d",
-      title: "CSS Tricks",
-      description: "Modern CSS tricks to enhance your website design.",
-      link: "https://css-tricks.com",
-      category: "CSS",
-      date: "Nov 14, 2025"
-    },
-    {
-      image: "https://images.unsplash.com/photo-1505685296765-3a2736de412f",
-      title: "JavaScript Best Practices",
-      description: "Write cleaner and more efficient JavaScript code.",
-      link: "https://javascript.info",
-      category: "JavaScript",
-      date: "Nov 15, 2025"
-    },
-    {
-      image: "https://images.unsplash.com/photo-1537432376769-00a0d12a1f0e",
-      title: "Frontend Frameworks",
-      description: "Compare the most popular frontend frameworks.",
-      link: "#",
-      category: "Frontend",
-      date: "Nov 16, 2025"
-    },
-    {
-      image: "https://images.unsplash.com/photo-1517430816045-df4b7de11d1d",
-      title: "UI/UX Design Tips",
-      description: "Create user-friendly and attractive interfaces.",
-      link: "#",
-      category: "Design",
-      date: "Nov 17, 2025"
-    },
-    {
-      image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f",
-      title: "Backend Development",
-      description: "Building scalable backend applications.",
-      link: "#",
-      category: "Backend",
-      date: "Nov 18, 2025"
-    },
-    {
-      image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c",
-      title: "APIs & Integrations",
-      description: "Learn how to connect your app with APIs.",
-      link: "#",
-      category: "API",
-      date: "Nov 19, 2025"
-    },
-    {
-      image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f",
-      title: "Web Security Tips",
-      description: "Keep your applications secure and reliable.",
-      link: "#",
-      category: "Security",
-      date: "Nov 20, 2025"
-    },
-  ];
+  const page = 1;
+  const perPage = 10;
+
+  const [
+    listBlogs,
+    { data: blogList, isLoading: loadingBlogs, isFetching: fetchingBlogs },
+  ] = useLazyGetPublicBlogListQuery();
+
+  React.useEffect(() => {
+    listBlogs({
+      page,
+      limit: perPage,
+    });
+  }, [page, perPage, listBlogs]);
 
   return (
     <div className="relative min-h-screen py-16 px-5 flex flex-col items-center bg-gradient-to-b from-indigo-50 via-green-50 to-green-50 overflow-hidden">
-      
       {/* Decorative blurred shapes */}
       <div className="absolute top-[-100px] left-[-80px] w-72 h-72 bg-indigo-300 rounded-full filter blur-3xl opacity-30"></div>
       <div className="absolute bottom-[-80px] right-[-100px] w-96 h-96 bg-green-300 rounded-full filter blur-3xl opacity-20"></div>
@@ -91,18 +32,16 @@ const BlogCardSection = () => {
         Explore our latest articles, tutorials, and insights from the world of web development.
       </p> */}
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
-        {blogs.map((blog, index) => (
-          <BlogCard
-            key={index}
-            image={blog.image}
-            title={blog.title}
-            description={blog.description}
-            link={blog.link}
-            category={blog.category}
-            date={blog.date}
-          />
-        ))}
+      <div className="max-w-7xl mx-auto px-4 ">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
+          {loadingBlogs || fetchingBlogs
+            ? Array.from({ length: blogList?.data?.length }).map((_, index) => (
+                <CardSkeleton key={index} />
+              ))
+            : blogList?.data?.map((blog, index) => (
+                <BlogCard key={index} blog={blog} />
+              ))}
+        </div>
       </div>
     </div>
   );

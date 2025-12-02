@@ -86,8 +86,15 @@ const BlogDetailScreen = () => {
               </Grid>
             </Grid>
 
-            <Box style={{ color: "gray" }}>
-              {ReactHtmlParser(blogDetail?.content)}
+            <Box mt={6}>
+              {blogDetail?.content && (
+                <Box
+                  sx={{ color: "#374151", lineHeight: 1.7 }}
+                  className="rich-text-content"
+                >
+                  {ReactHtmlParser(blogDetail?.content)}
+                </Box>
+              )}
             </Box>
           </Box>
         ) : (

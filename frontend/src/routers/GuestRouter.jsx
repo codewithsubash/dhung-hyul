@@ -13,6 +13,7 @@ import GetInvolved from "../screens/Guest/GetInvolved/GetInvolved";
 import GetInvolvedScreen from "../screens/Guest/GetInvolved/GetInvolvedScreen";
 import EventDetails from "../screens/Guest/Events/EventDetails";
 import ContactScreen from "../screens/Guest/Contact/ContactScreen";
+import BlogDetailPage from "../screens/Guest/Blog/components/BlogDetailPage";
 
 const GuestRouter = () => {
   return (
@@ -76,7 +77,15 @@ const GuestRouter = () => {
           }
         />
         <Route
-          path="/events/event-details"
+          path="/blog/:slug/detail"
+          element={
+            <GuestOnly>
+              <BlogDetailPage />
+            </GuestOnly>
+          }
+        />
+        <Route
+          path="/event/:slug/detail"
           element={
             <GuestOnly>
               <EventDetails />

@@ -70,7 +70,7 @@ const SLayout = ({
             {showSidebar && (
               <div className="mx-auto">
                 {/* <AppLogo /> */}
-                Subash
+                Dhung Hyul
               </div>
             )}
 
