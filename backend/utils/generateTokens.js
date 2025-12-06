@@ -6,4 +6,10 @@ export const generateAccessToken = (id) => {
   });
 };
 
+export const generateOTPToken = (userId, otp) => {
+  return jwt.sign({ userId, otp }, process.env.JWT_SECRET, {
+    expiresIn: "5m", // 5 minutes
+  });
+};
+
 export default generateAccessToken;

@@ -98,6 +98,21 @@ export const userApi = baseApi.injectEndpoints({
         { type: "User", id: "LIST" },
       ],
     }),
+    forgotPassword: builder.mutation({
+      query: (body) => ({
+        url: `${USER_BASE_URL}/forgot-password`,
+        method: "POST",
+        body,
+      }),
+    }),
+
+    resetPassword: builder.mutation({
+      query: (body) => ({
+        url: `${USER_BASE_URL}/reset-password`,
+        method: "POST",
+        body,
+      }),
+    }),
   }),
 });
 
@@ -112,4 +127,6 @@ export const {
   useGetUserListQuery,
   useLazyGetUserListQuery,
   useUpdateUserMutation,
+  useForgotPasswordMutation,
+  useResetPasswordMutation,
 } = userApi;
