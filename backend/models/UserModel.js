@@ -22,6 +22,7 @@ const userSchema = mongoose.Schema(
       default: "Member",
     },
     isActive: { type: Boolean, default: true },
+    otp: { type: String, default: null },
   },
   {
     timestamps: true,

@@ -4,10 +4,12 @@ import {
   editUser,
   editUserProfile,
   editUserProfilePassword,
+  forgotPassword,
   getUserDetail,
   listUser,
   loginUser,
   registerUser,
+  resetPassword,
   userDetail,
 } from "../controllers/UserController.js";
 import { protect } from "../middlewares/authMiddleware.js";
@@ -16,6 +18,8 @@ const router = express.Router();
 
 router.post("/register", registerUser);
 router.post("/login", loginUser);
+router.post("/forgot-password", forgotPassword);
+router.post("/reset-password", resetPassword);
 
 router.use(protect);
 

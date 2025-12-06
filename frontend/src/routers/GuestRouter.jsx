@@ -14,6 +14,8 @@ import GetInvolvedScreen from "../screens/Guest/GetInvolved/GetInvolvedScreen";
 import EventDetails from "../screens/Guest/Events/EventDetails";
 import ContactScreen from "../screens/Guest/Contact/ContactScreen";
 import BlogDetailPage from "../screens/Guest/Blog/components/BlogDetailPage";
+import ForgotPasswordScreen from "../components/ForgotPasswordScreen";
+import ResetPasswordScreen from "../components/ResetPasswordScreen";
 
 const GuestRouter = () => {
   return (
@@ -115,6 +117,22 @@ const GuestRouter = () => {
         element={
           <GuestOnly>
             <SignInScreen />
+          </GuestOnly>
+        }
+      />
+      <Route
+        path="/forgot-password"
+        element={
+          <GuestOnly>
+            <ForgotPasswordScreen />
+          </GuestOnly>
+        }
+      />
+      <Route
+        path="/reset-password"
+        element={
+          <GuestOnly>
+            <ResetPasswordScreen />
           </GuestOnly>
         }
       />

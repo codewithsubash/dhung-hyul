@@ -57,7 +57,6 @@ export const getBlogBySlug = asyncHandler(async (req, res) => {
 
 export const listEvent = asyncHandler(async (req, res) => {
   const {
-    status = "Published",
     limit = 10,
     page = 1,
     search = "",
@@ -68,12 +67,8 @@ export const listEvent = asyncHandler(async (req, res) => {
 
   const matchQuery = {
     title: { $regex: new RegExp(search, "i") },
+    status: { $nin: ["Cancelled", "Draft"] },
   };
-
-  // Add status filter if provided
-  if (status) {
-    matchQuery.status = status;
-  }
 
   // Add category filter if provided
   if (category) {

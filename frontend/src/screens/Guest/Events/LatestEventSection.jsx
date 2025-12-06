@@ -1,11 +1,17 @@
 import React, { useState } from "react";
 import { ArrowUpRight } from "lucide-react";
 import LatestEventCard from "./components/LatestEventCard";
+
+import { Box, Pagination, Typography } from "@mui/material";
 import { useLazyGetPublicEventListQuery } from "../../../store/services/publicApi";
 import CardSkeleton from "../Blog/components/CardSkeleton";
+import { useSearchParams } from "react-router-dom";
+import { useGetUrlParams } from "../../../utils/useGetUrlParams";
 const LatestEventSection = () => {
-  const page = 1;
-  const perPage = 10;
+  const [searchParams, setSearchParams] = useSearchParams();
+  const page = parseInt(searchParams.get("page") || 1);
+  const perPage = parseInt(searchParams.get("perPage") || 8);
+  const URL_PARAMS = useGetUrlParams();
 
   const [
     listEvents,
@@ -18,6 +24,12 @@ const LatestEventSection = () => {
       limit: perPage,
     });
   }, [page, perPage, listEvents]);
+
+  const totalPages = Math.ceil(eventList?.totalItems / perPage) || 1;
+
+  const handlePageChange = (event, value) => {
+    setSearchParams({ ...URL_PARAMS, page: value });
+  };
 
   return (
     <div className="relative min-h-screen py-16 px-5 flex flex-col items-center  overflow-hidden">
@@ -41,6 +53,20 @@ const LatestEventSection = () => {
               <LatestEventCard key={event.slug} eventList={event} />
             ))}
       </div>
+
+      <Box className="mt-8 flex flex-col items-center justify-center gap-4">
+        <Pagination
+          count={totalPages}
+          page={page}
+          onChange={handlePageChange}
+          color="primary"
+        />
+        <Typography variant="body2" color="text.secondary">
+          Showing {(page - 1) * perPage + 1} -{" "}
+          {Math.min(page * perPage, eventList?.totalItems)} of{" "}
+          {eventList?.totalItems} events
+        </Typography>
+      </Box>
     </div>
   );
 };

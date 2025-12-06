@@ -1,9 +1,12 @@
 import asyncHandler from "express-async-handler";
 import User from "../models/UserModel.js";
 import mongoose from "mongoose";
-import generateAccessToken from "../utils/generateTokens.js";
+import generateAccessToken, {
+  generateOTPToken,
+} from "../utils/generateTokens.js";
 import { sendWelcomeEmail } from "../email/sendMail.js";
 import { randomString } from "../utils/randomString.js";
+import jwt from "jsonwebtoken";
 
 export const registerUser = asyncHandler(async (req, res) => {
   const { name, email, phone, password, confirmPassword, role, isActive } =
@@ -243,4 +246,95 @@ export const getUserDetail = asyncHandler(async (req, res) => {
   if (!user) throw new Error("User Not Found");
 
   res.status(200).json(user);
+});
+
+export const forgotPassword = asyncHandler(async (req, res) => {
+  const { email } = req.body;
+
+  const user = await User.findOne({ email });
+
+  if (!user)
+    throw new Error("User's doesn't exist! Please provide a valid user email.");
+
+  const otp = randomString(6);
+
+  user.otp = generateOTPToken(user._id, otp);
+
+  await user.save();
+
+  console.log(otp);
+
+  // const hostName = `${req.protocol}://${req.headers.host}`;
+  // // process.env.NODE_ENV === "development"
+  // //   ? "http://localhost:3000"
+  // //   : `${req.protocol}://${req.headers.host}`;
+
+  // sendForgotPasswordLink({
+  //   hostName,
+  //   user,
+  //   otp,
+  //   account: user.selectedEntity.entity.account,
+  //   req,
+  //   domainCheck: true,
+  // });
+
+  res
+    .status(200)
+    .json({ message: `Reset password instructions sent to ${user?.email}.` });
+});
+
+export const resetPassword = asyncHandler(async (req, res) => {
+  const { email, password, otp } = req.body;
+
+  const __decodeJWT = async () => {
+    try {
+      return jwt.verify(user.otp, process.env.JWT_SECRET);
+    } catch (error) {
+      if (
+        error?.name === "JsonWebTokenError" ||
+        error?.name === "TokenExpiredError"
+      )
+        throw new Error(
+          "OPT expired! Please redo the forgot password process."
+        );
+    }
+  };
+  // try {
+  const user = await User.findOne({ email });
+
+  if (!user)
+    throw new Error("User's doesn't exist! Please provide a valid user email.");
+  const decoded = await __decodeJWT(user?.otp);
+
+  if (!decoded) throw new Error("Undefined OTP! Please try again.");
+
+  if (decoded.otp !== otp?.trim())
+    throw new Error(
+      "Invalid OTP! Please check the otp you received properly and try again."
+    );
+
+  const _isOldPassword = await user.matchPassword(password);
+  if (_isOldPassword)
+    throw new Error("New password cannot be same as old password!");
+
+  user.password = password?.trim();
+  user.otp = null;
+
+  await user.save();
+  // const hostName = `${req.protocol}://${req.headers.host}`;
+
+  // await sendResetPasswordLink({
+  //   user: {
+  //     ...JSON.parse(JSON.stringify(user)),
+  //     password: password,
+  //   },
+  //   account: user.selectedEntity.entity.account,
+  //   hostName,
+  //   domainCheck: true,
+  // });
+
+  res.status(200).json({
+    message:
+      "Password reset successful. You can sign in with your new password.",
+  });
 });
