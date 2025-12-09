@@ -33,6 +33,15 @@ export const publicApi = baseApi.injectEndpoints({
       query: (slug) => `${PUBLIC_BASE_URL}/event/${slug}`,
       providesTags: (result, error, id) => [{ type: "Event", id: "LIST" }],
     }),
+
+    createEventRegistrationAndUser: builder.mutation({
+      query: (payload) => ({
+        url: `${PUBLIC_BASE_URL}/create/event-registration`,
+        method: "POST",
+        body: payload,
+      }),
+      invalidatesTags: [{ type: "EventRegistration", id: "LIST" }],
+    }),
   }),
 });
 
@@ -44,4 +53,5 @@ export const {
   useGetPublicEventListQuery,
   useGetPublicEventDetailQuery,
   useLazyGetPublicEventListQuery,
+  useCreateEventRegistrationAndUserMutation,
 } = publicApi;

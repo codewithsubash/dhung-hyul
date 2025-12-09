@@ -9,8 +9,11 @@ import userRoutes from "./routes/userRoutes.js";
 import cloudinaryRoutes from "./routes/cloudinaryRoutes.js";
 import blogRoutes from "./routes/blogRoutes.js";
 import eventRoutes from "./routes/eventRoutes.js";
+import eventRegistrationRoutes from "./routes/eventRegistrationRoutes.js";
 import listRoutes from "./routes/listRoutes.js";
 import publicRoutes from "./routes/publicRoutes.js";
+import dashboardRoutes from "./routes/dashboardRoutes.js";
+import { errorHandler } from "./middlewares/errorMiddleware.js";
 
 const app = express();
 
@@ -22,8 +25,12 @@ app.use("/api/users", userRoutes);
 app.use("/api/cloudinary", cloudinaryRoutes);
 app.use("/api/blogs", blogRoutes);
 app.use("/api/events", eventRoutes);
+app.use("/api/event-registration", eventRegistrationRoutes);
 app.use("/api/customize-list", listRoutes);
 app.use("/api/public", publicRoutes);
+app.use("/api/dashboard", dashboardRoutes);
+
+app.use(errorHandler);
 
 const PORT = process.env.PORT || 5000;
 
