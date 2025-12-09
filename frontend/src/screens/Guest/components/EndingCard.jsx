@@ -3,10 +3,9 @@ import React from "react";
 // Import local images
 import galleryImg from "../../../assets/images/gallery.jpeg";
 import blogImg from "../../../assets/images/blog.jpeg";
-import eventsImg from "../../../assets/images/events.jpeg";
+import eventsImg from "../../../assets/images/events.jpg";
 import contactImg from "../../../assets/images/contact.jpeg";
 import involvedImg from "../../../assets/images/getInvolved.jpeg";
-import eventDetailsImg from "../../../assets/images/eventDetails.jpeg";
 import aboutImg from "../../../assets/images/about.jpeg";
 
 const endingCardData = [
@@ -16,31 +15,33 @@ const endingCardData = [
     description: "Discover the moments that define our mission and community.",
     image: galleryImg,
     primaryButton: "View Gallery",
-    secondaryButton: "Contact Us"
+    secondaryButton: "Contact Us",
   },
-   {
+  {
     title: "About",
     heading: "Explore Our Visual Journey",
     description: "Discover the moments that define our mission and community.",
     image: aboutImg,
     primaryButton: "About Us",
-    secondaryButton: "Contact Us"
+    secondaryButton: "Contact Us",
   },
   {
     title: "Blog",
     heading: "Stay Connected With Our Stories",
-    description: "Join our community and never miss an update from our journey.",
+    description:
+      "Join our community and never miss an update from our journey.",
     image: blogImg,
     primaryButton: "Read More",
-    secondaryButton: "Subscribe"
+    secondaryButton: "Subscribe",
   },
   {
     title: "Events",
     heading: "Join Us at Our Next Event",
-    description: "Be part of the change and connect with like-minded individuals.",
+    description:
+      "Be part of the change and connect with like-minded individuals.",
     image: eventsImg,
     primaryButton: "Register Now",
-    secondaryButton: "View Calendar"
+    secondaryButton: "View Calendar",
   },
   {
     title: "Contact",
@@ -48,36 +49,42 @@ const endingCardData = [
     description: "Reach out to us and discover how we can work together.",
     image: contactImg,
     primaryButton: "Get in Touch",
-    secondaryButton: "Learn More"
+    secondaryButton: "Learn More",
   },
   {
     title: "Get Involved",
     heading: "Make a Difference Today",
-    description: "Your contribution can create lasting change in our community.",
+    description:
+      "Your contribution can create lasting change in our community.",
     image: involvedImg,
     primaryButton: "Get Involved",
-    secondaryButton: "Donate Now"
+    secondaryButton: "Donate Now",
   },
-  {
-    title: "Event Details",
-    heading: "Don't Miss This Opportunity",
-    description: "Register now and be part of something meaningful.",
-    image: eventDetailsImg,
-    primaryButton: "Register",
-    secondaryButton: "Share Event"
-  }
 ];
 
-const EndingCard = ({ title, heading, description, image, primaryButton, secondaryButton }) => {
+const EndingCard = ({
+  title,
+  heading,
+  description,
+  image,
+  primaryButton,
+  secondaryButton,
+}) => {
   const data = endingCardData.find(
     (item) => item.title.toLowerCase() === title.toLowerCase()
   );
 
-  const finalHeading = heading || data?.heading || "Be Part of the Change You Want to See";
-  const finalDescription = description || data?.description || "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in";
+  const finalHeading =
+    heading || data?.heading || "Be Part of the Change You Want to See";
+  const finalDescription =
+    description ||
+    data?.description ||
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in";
   const finalImage = image || data?.image || galleryImg;
-  const finalPrimaryButton = primaryButton || data?.primaryButton || "Get Involved";
-  const finalSecondaryButton = secondaryButton || data?.secondaryButton || "Contact Us";
+  const finalPrimaryButton =
+    primaryButton || data?.primaryButton || "Get Involved";
+  const finalSecondaryButton =
+    secondaryButton || data?.secondaryButton || "Contact Us";
 
   return (
     <div className="relative w-[99%] h-[470px] md:h-[600px] rounded-3xl overflow-hidden m-2">

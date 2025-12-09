@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, useParams } from "react-router-dom";
-import { Box, Button, Chip, Grid, Typography } from "@mui/material";
+import { Box, Button, Chip, Divider, Grid, Typography } from "@mui/material";
 import { EditOutlined } from "@mui/icons-material";
 import ReactHtmlParser from "html-react-parser";
 
@@ -18,6 +18,7 @@ import {
   getRegistrationStatus,
 } from "../../../../utils/dateFormatter";
 import EventPathway from "../../../../components/Shared/EventPathWay";
+import { EventTabs } from "./components/eventTabs";
 
 const sectionTitleStyle = {
   fontSize: "20px",
@@ -231,6 +232,8 @@ const EventDetailScreen = () => {
             )}
           </Box>
         </Box>
+        <Divider />
+        <EventTabs />
       </BreadcrumbLayout.Paper>
     </BreadcrumbLayout>
   );

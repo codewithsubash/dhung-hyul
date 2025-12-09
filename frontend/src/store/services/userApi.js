@@ -113,6 +113,10 @@ export const userApi = baseApi.injectEndpoints({
         body,
       }),
     }),
+    getUserDDL: builder.query({
+      query: (params) => ({ url: `${USER_BASE_URL}/ddl`, params }),
+      providesTags: (result) => [{ type: "User", id: "LIST" }],
+    }),
   }),
 });
 
@@ -129,4 +133,6 @@ export const {
   useUpdateUserMutation,
   useForgotPasswordMutation,
   useResetPasswordMutation,
+  useGetUserDDLQuery,
+  useLazyGetUserDDLQuery,
 } = userApi;

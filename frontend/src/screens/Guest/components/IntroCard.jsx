@@ -1,10 +1,9 @@
 import React from "react";
 import galleryImg from "../../../assets/images/gallery.jpeg";
 import blogImg from "../../../assets/images/blog.jpeg";
-import eventsImg from "../../../assets/images/events.jpeg";
+import eventsImg from "../../../assets/images/events.jpg";
 import contactImg from "../../../assets/images/contact.jpeg";
 import involvedImg from "../../../assets/images/getInvolved.jpeg";
-import eventDetailsImg from "../../../assets/images/eventDetails.jpeg";
 import aboutImg from "../../../assets/images/about.jpeg";
 
 const introCardData = [
@@ -41,12 +40,6 @@ const introCardData = [
   {
     title: "Get Involved",
     image: involvedImg,
-    description:
-      "Join us as a volunteer, supporter, or partner to make an impact together.",
-  },
-  {
-    title: "event details",
-    image: eventDetailsImg,
     description:
       "Join us as a volunteer, supporter, or partner to make an impact together.",
   },
