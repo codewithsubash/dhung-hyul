@@ -1,8 +1,11 @@
 import asyncHandler from "express-async-handler";
-import { sendEmail } from "../email/sendMail.js";
+import { sendEmail, sendWelcomeEmail } from "../email/sendMail.js";
 import Blog from "../models/BlogModel.js";
 import Event from "../models/EventModel.js";
 import mongoose from "mongoose";
+import EventRegistration from "../models/EventRegistrationModel.js";
+import User from "../models/UserModel.js";
+import { randomString } from "../utils/randomString.js";
 
 export const listBlog = asyncHandler(async (req, res) => {
   const {
@@ -132,4 +135,87 @@ export const contactFormSubmission = asyncHandler(async (req, res) => {
   });
 
   res.status(200).json("Message sent!");
+});
+
+export const createEventRegistrationAndUser = asyncHandler(async (req, res) => {
+  const { name, email, phone, event } = req.body;
+
+  const session = await mongoose.startSession();
+  session.startTransaction();
+
+  try {
+    let existingUser = await User.findOne({ email }).session(session);
+    let user;
+
+    // If user does not exist → create new user
+    if (!existingUser) {
+      let _newUserPassword = randomString(8);
+
+      const [createdUser] = await User.create(
+        [
+          {
+            name,
+            email,
+            password: _newUserPassword,
+            phone,
+            role: "Member",
+          },
+        ],
+        { session }
+      );
+
+      user = createdUser;
+
+      const hostName = `${req.protocol}://${req.headers.host}`;
+
+      await sendWelcomeEmail({
+        user,
+        hostName,
+      });
+    } else {
+      user = existingUser;
+    }
+
+    // 🔍 Check if user is already registered in this event
+    const alreadyRegistered = await EventRegistration.findOne({
+      event,
+      user: user._id,
+    }).session(session);
+
+    if (alreadyRegistered) {
+      await session.abortTransaction();
+      session.endSession();
+
+      return res.status(400).json({
+        success: false,
+        message: "User already registered in this event",
+      });
+    }
+
+    // Create new event registration
+    const [eventRegistration] = await EventRegistration.create(
+      [
+        {
+          event,
+          user: user._id,
+        },
+      ],
+      { session }
+    );
+
+    await session.commitTransaction();
+
+    return res.status(201).json({
+      success: true,
+      data: eventRegistration,
+    });
+  } catch (error) {
+    await session.abortTransaction();
+    session.endSession();
+
+    return res.status(500).json({
+      success: false,
+      message: error.message || "Something went wrong",
+    });
+  }
 });

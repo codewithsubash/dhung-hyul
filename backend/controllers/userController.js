@@ -338,3 +338,12 @@ export const resetPassword = asyncHandler(async (req, res) => {
       "Password reset successful. You can sign in with your new password.",
   });
 });
+
+export const userDDL = asyncHandler(async (req, res) => {
+  const users = await User.find({ role: "Member" })
+    .select("_id name email")
+    .lean() // Better performance for read-only operations
+    .sort({ name: 1 }); // Sort alphabetically for better UX
+
+  res.status(200).json(users);
+});

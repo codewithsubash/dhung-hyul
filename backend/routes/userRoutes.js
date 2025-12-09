@@ -10,6 +10,7 @@ import {
   loginUser,
   registerUser,
   resetPassword,
+  userDDL,
   userDetail,
 } from "../controllers/UserController.js";
 import { protect } from "../middlewares/authMiddleware.js";
@@ -27,6 +28,7 @@ router.post("/", addUser);
 router.get("/list", listUser);
 
 router.get("/detail", userDetail);
+router.get("/ddl", userDDL);
 
 router.route("/:id").get(getUserDetail).put(editUser);
 
